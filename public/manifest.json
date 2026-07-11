@@ -1,0 +1,22 @@
+{
+  "name": "¿Me alcanza?",
+  "short_name": "¿Me alcanza?",
+  "description": "Calculadoras financieras simples para Chile: crédito hipotecario, refinanciamiento, capacidad de pago y renta necesaria.",
+  "lang": "es-CL",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5F7FA",
+  "theme_color": "#0F3D4C",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

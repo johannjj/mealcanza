@@ -1,0 +1,57 @@
+import { useEffect } from 'react';
+import 'react-native-gesture-handler';
+import { Stack } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import { HeaderBackButton } from '@/navigation/HeaderBackButton';
+import { services } from '@/services/container';
+import { colors } from '@/theme';
+
+export default function RootLayout() {
+  useEffect(() => {
+    void services.userRepository.getAnonymousUserId();
+  }, []);
+
+  return (
+    <>
+      <StatusBar style="dark" />
+      <Stack
+        screenOptions={{
+          headerShown: true,
+          headerBackVisible: false,
+          headerLeft: () => <HeaderBackButton />,
+          headerStyle: { backgroundColor: colors.card },
+          headerTintColor: colors.primary,
+          headerTitleStyle: { fontWeight: '600', color: colors.text },
+          headerShadowVisible: true,
+          gestureEnabled: true,
+          contentStyle: { backgroundColor: colors.background },
+        }}
+      >
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="vivienda/index" options={{ headerShown: false }} />
+        <Stack.Screen name="vivienda/simular-credito" options={{ headerShown: false }} />
+        <Stack.Screen name="vivienda/refinanciar" options={{ headerShown: false }} />
+        <Stack.Screen name="vivienda/capacidad-de-pago" options={{ headerShown: false }} />
+        <Stack.Screen name="vivienda/cuanto-deberia-ganar" options={{ headerShown: false }} />
+        <Stack.Screen name="aprende/index" options={{ headerShown: false }} />
+        <Stack.Screen name="aprende/que-es-la-uf" options={{ headerShown: false }} />
+        <Stack.Screen name="aprende/carga-financiera" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="aprende/cuando-conviene-refinanciar"
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen name="privacidad" options={{ headerShown: false }} />
+        <Stack.Screen name="terminos" options={{ headerShown: false }} />
+        <Stack.Screen name="contacto" options={{ headerShown: false }} />
+        <Stack.Screen name="mortgage" options={{ headerShown: false }} />
+        <Stack.Screen name="refinance" options={{ headerShown: false }} />
+        <Stack.Screen name="affordability" options={{ headerShown: false }} />
+        <Stack.Screen name="income-required" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="lead"
+          options={{ title: 'Solicitar orientación', headerShown: true }}
+        />
+      </Stack>
+    </>
+  );
+}

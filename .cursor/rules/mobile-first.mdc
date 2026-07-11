@@ -1,0 +1,37 @@
+---
+description: Diseño mobile-first para Hipoteca Chile (Android, iOS futuro, web adaptativa)
+globs: src/**/*.{tsx,ts}
+alwaysApply: true
+---
+
+# Mobile First — Hipoteca Chile
+
+La app es **mobile first**. Android es la plataforma principal; iPhone y web son adaptaciones de la misma experiencia.
+
+## Prioridad de plataformas
+
+1. Android (principal)
+2. iPhone (futuro)
+3. Web (secundario, misma UI adaptada)
+
+## Reglas
+
+- **Una sola experiencia**: mismos flujos y funcionalidades en móvil y web. Nunca ocultar features en móvil ni crear UX distinta por plataforma.
+- **No diseñar como sitio corporativo**: cards apiladas, botones grandes, navegación táctil. Referencia: Fintual, Mercado Pago, Notion.
+- **Breakpoints** (`src/theme/layout.ts`):
+  - Móvil: &lt; 768px → 1 columna
+  - Tablet: 768–1023px → 2 columnas cuando tenga sentido
+  - Desktop: ≥ 1024px → contenido centrado, `maxWidth: 1200`
+- Usar `ScreenLayout` + `ContentContainer` + `ResponsiveColumns` para layouts.
+- Botones y controles táctiles: `minHeight` ≥ 48px (`layout.minTouchTarget`).
+- Cards de simulación deben verse bien desde **390px** de ancho hasta desktop.
+- Home: sensación de app moderna, no landing corporativa.
+
+## Componentes
+
+| Componente | Uso |
+|------------|-----|
+| `ScreenLayout` | Scroll + safe area + contenedor centrado |
+| `ContentContainer` | max 1200px, centrado |
+| `ResponsiveColumns` | 1 col móvil, hasta 2 col tablet+ |
+| `useResponsive()` | `isMobile`, `isTablet`, `isDesktop`, `columnCount` |
