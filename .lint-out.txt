@@ -1,0 +1,202 @@
+
+> hipoteca-chile@1.0.0 lint
+> eslint . --ext .ts,.tsx
+
+
+/home/johann/repos/mealcanza/expo-env.d.ts
+  3:73  warning  Insert `⏎`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/app/+html.tsx
+  14:14  warning  Replace `⏎··········name="viewport"⏎··········content="width=device-width,·initial-scale=1,·shrink-to-fit=no"⏎·······` with `·name="viewport"·content="width=device-width,·initial-scale=1,·shrink-to-fit=no"`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/app/_layout.tsx
+  39:22  warning  Replace `⏎··········name="aprende/cuando-conviene-refinanciar"⏎··········options={{·headerShown:·false·}}⏎·······` with `·name="aprende/cuando-conviene-refinanciar"·options={{·headerShown:·false·}}`  prettier/prettier
+  50:22  warning  Replace `⏎··········name="lead"⏎··········options={{·title:·'Solicitar·orientación',·headerShown:·true·}}⏎·······` with `·name="lead"·options={{·title:·'Solicitar·orientación',·headerShown:·true·}}`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/app/aprende/carga-financiera.tsx
+  7:28  warning  Replace `⏎······content={educationPages['carga-financiera']}⏎······seo={seoPages.learnLoad}⏎···` with `·content={educationPages['carga-financiera']}·seo={seoPages.learnLoad}`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/app/aprende/que-es-la-uf.tsx
+  6:10  warning  Replace `(⏎····<EducationArticleScreen·content={educationPages['que-es-la-uf']}·seo={seoPages.learnUf}·/>⏎··)` with `<EducationArticleScreen·content={educationPages['que-es-la-uf']}·seo={seoPages.learnUf}·/>`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/components/layout/PageContainer.tsx
+  49:19  warning  Replace `(⏎··········<View·style={styles.footerWrap}>{footer}</View>⏎········)` with `<View·style={styles.footerWrap}>{footer}</View>`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/components/layout/SiteFooter.tsx
+  56:21  warning  Replace `⏎··············href={routes.privacy}⏎··············style={styles.link}⏎··············textStyle={styles.linkText}⏎············` with `·href={routes.privacy}·style={styles.link}·textStyle={styles.linkText}`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/components/layout/SiteHeader.tsx
+   74:24  warning  Replace `⏎····················style={[styles.navLabel,·isActive(item.href)·&&·styles.navLabelActive]}⏎··················` with `·style={[styles.navLabel,·isActive(item.href)·&&·styles.navLabelActive]}`    prettier/prettier
+  104:22  warning  Replace `⏎··················style={[styles.mobileLabel,·isActive(item.href)·&&·styles.navLabelActive]}⏎················` with `·style={[styles.mobileLabel,·isActive(item.href)·&&·styles.navLabelActive]}`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/components/results/DisclaimerCard.tsx
+  10:33  warning  Replace `⏎··text,⏎··title·=·'Importante',⏎` with `·text,·title·=·'Importante'·`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/components/results/EditCalculationButton.tsx
+   9:40  warning  Replace `⏎··onPress,⏎··label·=·simulatorCopy.editSimulation,⏎` with `·onPress,·label·=·simulatorCopy.editSimulation·`                                                                                                                   prettier/prettier
+  13:10  warning  Replace `(⏎····<Button⏎······label={label}⏎······variant="outline"⏎······onPress={onPress}⏎······accessibilityLabel={label}⏎····/>⏎··)` with `<Button·label={label}·variant="outline"·onPress={onPress}·accessibilityLabel={label}·/>`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/components/results/FinancialBreakdownBar.tsx
+  37:12  warning  Replace `⏎······?·positive.map((s)·=>·Math.max(8,·(s.value·/·sum)·*·100))⏎·····` with `·?·positive.map((s)·=>·Math.max(8,·(s.value·/·sum)·*·100))`                                                                             prettier/prettier
+  47:10  warning  Replace `⏎······style={styles.card}⏎······accessibilityRole="summary"⏎······accessibilityLabel={accessibilitySummary}⏎····` with `·style={styles.card}·accessibilityRole="summary"·accessibilityLabel={accessibilitySummary}`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/components/results/RelatedCalculatorsSection.tsx
+  1:22  warning  'Text' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/johann/repos/mealcanza/src/components/results/ResultMetric.tsx
+  2:18  warning  'spacing' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/johann/repos/mealcanza/src/components/results/ScenarioComparison.tsx
+  28:26  warning  Replace `⏎··AffordabilityScoreStatus,⏎··'success'·|·'primary'·|·'warning'·|·'danger'⏎` with `AffordabilityScoreStatus,·'success'·|·'primary'·|·'warning'·|·'danger'`  prettier/prettier
+  51:31  warning  Replace `(⏎················<Text·style={styles.selectedLabel}>Seleccionado</Text>⏎··············)` with `<Text·style={styles.selectedLabel}>Seleccionado</Text>`      prettier/prettier
+
+/home/johann/repos/mealcanza/src/components/seo/PageSeo.tsx
+  8:43  warning  Array type using 'Array<T>' is forbidden. Use 'T[]' instead  @typescript-eslint/array-type
+
+/home/johann/repos/mealcanza/src/components/seo/SeoHead.tsx
+   3:9   warning  Replace `⏎··DEFAULT_OG_IMAGE_PATH,⏎··GOOGLE_SITE_VERIFICATION,⏎` with `·DEFAULT_OG_IMAGE_PATH,·GOOGLE_SITE_VERIFICATION·`         prettier/prettier
+  16:38  warning  Array type using 'Array<T>' is forbidden. Use 'T[]' instead                                                                       @typescript-eslint/array-type
+  45:31  warning  Replace `⏎····?·Array.isArray(jsonLd)⏎······?·jsonLd⏎······:·[jsonLd]⏎···` with `·?·(Array.isArray(jsonLd)·?·jsonLd·:·[jsonLd])`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/components/ui/AppLink.tsx
+  17:26  warning  Replace `⏎··href,⏎··children,⏎··style,⏎··textStyle,⏎··accessibilityLabel,⏎··onPress,⏎` with `·href,·children,·style,·textStyle,·accessibilityLabel,·onPress·`           prettier/prettier
+  33:41  warning  Replace `(⏎··········<Text·style={textStyle}>{children}</Text>⏎········)·:·(⏎··········children⏎········)` with `<Text·style={textStyle}>{children}</Text>·:·children`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/components/ui/Breadcrumbs.tsx
+  56:27  warning  'index' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+/home/johann/repos/mealcanza/src/components/ui/Card.tsx
+  2:9  warning  Replace `·StyleSheet,·View,·type·AccessibilityRole,·type·StyleProp,·type·ViewStyle·` with `⏎··StyleSheet,⏎··View,⏎··type·AccessibilityRole,⏎··type·StyleProp,⏎··type·ViewStyle,⏎`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/components/ui/ProgressBar.tsx
+  12:19  warning  Delete `⏎···`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/components/ui/ResponsiveColumns.tsx
+  18:36  warning  Replace `⏎··children,⏎··maxColumns·=·2,⏎··style,⏎··gap·=·spacing.sm,⏎` with `·children,·maxColumns·=·2,·style,·gap·=·spacing.sm·`                              prettier/prettier
+  32:28  warning  Replace `⏎····maxColumns,⏎····Math.max(2,·Math.floor(available·/·minColumnWidth)),⏎··` with `maxColumns,·Math.max(2,·Math.floor(available·/·minColumnWidth))`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/components/ui/ShareResultButton.tsx
+   9:36  warning  Replace `⏎··onPress,⏎··label·=·shareCopy.shareResult,⏎` with `·onPress,·label·=·shareCopy.shareResult·`                                                                                                                                 prettier/prettier
+  13:10  warning  Replace `(⏎····<Button⏎······label={label}⏎······variant="outline"⏎······onPress={onPress}⏎······accessibilityLabel={label}⏎····/>⏎··)` with `<Button·label={label}·variant="outline"·onPress={onPress}·accessibilityLabel={label}·/>`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/components/ui/TrustNotes.tsx
+  3:18  warning  'spacing' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/johann/repos/mealcanza/src/config/site.ts
+  6:37  warning  Delete `⏎···`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/constants/copy.ts
+   15:28  warning  Delete `⏎···`    prettier/prettier
+   25:24  warning  Delete `⏎···`    prettier/prettier
+  186:14  warning  Delete `⏎·····`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/constants/relatedCalculators.ts
+  47:30  warning  Delete `⏎···`                                                                      prettier/prettier
+  49:28  warning  Delete `⏎···`                                                                      prettier/prettier
+  54:35  warning  Delete `⏎···`                                                                      prettier/prettier
+  57:35  warning  Delete `⏎···`                                                                      prettier/prettier
+  61:39  warning  Replace `⏎··from:·CalculatorAnalyticsType,⏎` with `from:·CalculatorAnalyticsType`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/features/affordability/AffordabilityResultCard.tsx
+  71:27  warning  Delete `⏎···`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/features/affordability/AffordabilityScreen.tsx
+  13:9  warning  Replace `⏎··affordabilityFaqs,⏎··affordabilityRelatedLinks,⏎` with `·affordabilityFaqs,·affordabilityRelatedLinks·`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/features/income-required/IncomeRequiredResultCard.tsx
+  26:43  warning  Replace `⏎··analysis,⏎··values,⏎··ufValue,⏎··loadPercent,⏎` with `·analysis,·values,·ufValue,·loadPercent·`  prettier/prettier
+  39:20  warning  Delete `⏎·······`                                                                                            prettier/prettier
+
+/home/johann/repos/mealcanza/src/features/income-required/IncomeRequiredScreen.tsx
+   14:9   warning  Replace `⏎··incomeRequiredFaqs,⏎··incomeRelatedLinks,⏎` with `·incomeRequiredFaqs,·incomeRelatedLinks·`  prettier/prettier
+   45:91  warning  Replace `⏎····null,⏎··` with `null`                                                                      prettier/prettier
+  177:98  warning  Insert `·su`                                                                                             prettier/prettier
+  178:14  warning  Delete `·su`                                                                                             prettier/prettier
+
+/home/johann/repos/mealcanza/src/features/learn/LearnIndexScreen.tsx
+  19:22  warning  Replace `⏎··{·label:·navCopy.home,·href:·routes.home·},⏎··{·label:·navCopy.learn·},⏎` with `{·label:·navCopy.home,·href:·routes.home·},·{·label:·navCopy.learn·}`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/features/learn/ViviendaHubScreen.tsx
+  18:22  warning  Replace `⏎··{·label:·navCopy.home,·href:·routes.home·},⏎··{·label:·navCopy.vivienda·},⏎` with `{·label:·navCopy.home,·href:·routes.home·},·{·label:·navCopy.vivienda·}`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/features/legal/ContactScreen.tsx
+  19:22  warning  Replace `⏎··{·label:·navCopy.home,·href:·routes.home·},⏎··{·label:·PAGE_TITLE·},⏎` with `{·label:·navCopy.home,·href:·routes.home·},·{·label:·PAGE_TITLE·}`                                                       prettier/prettier
+  30:15  warning  Replace `·page={seoPages.contact}·breadcrumbs={breadcrumbsToSeo(breadcrumbs,·routes.contact)}` with `⏎········page={seoPages.contact}⏎········breadcrumbs={breadcrumbsToSeo(breadcrumbs,·routes.contact)}⏎·····`  prettier/prettier
+  41:92  warning  Insert `·backend`                                                                                                                                                                                                 prettier/prettier
+  42:10  warning  Delete `·backend`                                                                                                                                                                                                 prettier/prettier
+
+/home/johann/repos/mealcanza/src/features/legal/PrivacyScreen.tsx
+  17:22  warning  Replace `⏎··{·label:·navCopy.home,·href:·routes.home·},⏎··{·label:·PAGE_TITLE·},⏎` with `{·label:·navCopy.home,·href:·routes.home·},·{·label:·PAGE_TITLE·}`                                                       prettier/prettier
+  64:15  warning  Replace `·page={seoPages.privacy}·breadcrumbs={breadcrumbsToSeo(breadcrumbs,·routes.privacy)}` with `⏎········page={seoPages.privacy}⏎········breadcrumbs={breadcrumbsToSeo(breadcrumbs,·routes.privacy)}⏎·····`  prettier/prettier
+  75:91  warning  Insert `·alcanza?`                                                                                                                                                                                                prettier/prettier
+  76:10  warning  Delete `·alcanza?`                                                                                                                                                                                                prettier/prettier
+
+/home/johann/repos/mealcanza/src/features/legal/TermsScreen.tsx
+  17:22  warning  Replace `⏎··{·label:·navCopy.home,·href:·routes.home·},⏎··{·label:·PAGE_TITLE·},⏎` with `{·label:·navCopy.home,·href:·routes.home·},·{·label:·PAGE_TITLE·}`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/features/mortgage/MortgageCompareTermsCard.tsx
+  21:14  warning  Replace `⏎··········key={row.termYears}⏎··········style={[styles.row,·index·===·rows.length·-·1·&&·styles.rowLast]}⏎········` with `·key={row.termYears}·style={[styles.row,·index·===·rows.length·-·1·&&·styles.rowLast]}`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/features/mortgage/MortgageResultCard.tsx
+  53:37  warning  Replace `⏎··result,⏎··values,⏎··ufValue,⏎··ufDate,⏎··compareRows,⏎··score,⏎` with `·result,·values,·ufValue,·ufDate,·compareRows,·score·`  prettier/prettier
+  78:43  warning  Replace `⏎··········?·null⏎·········` with `·?·null`                                                                                       prettier/prettier
+
+/home/johann/repos/mealcanza/src/features/mortgage/MortgageSimulatorScreen.tsx
+   13:9   warning  Replace `⏎··mortgageFaqs,⏎··mortgageRelatedLinks,⏎` with `·mortgageFaqs,·mortgageRelatedLinks·`                                                                                 prettier/prettier
+   54:30  warning  Replace `⏎····()·=>·createMortgageFormSchema(ufForValidation),⏎····[ufForValidation],⏎··` with `()·=>·createMortgageFormSchema(ufForValidation),·[ufForValidation]`             prettier/prettier
+  225:90  warning  Insert `·propiedad,`                                                                                                                                                            prettier/prettier
+  226:14  warning  Delete `·propiedad,`                                                                                                                                                            prettier/prettier
+  244:35  warning  Replace `⏎··············label={suiteCopy.editData}⏎··············onPress={handleEditSimulation}⏎···········` with `·label={suiteCopy.editData}·onPress={handleEditSimulation}`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/features/refinance/RefinanceFormCard.tsx
+  72:23  warning  Replace `·label="Costo·estimado·refinanciamiento·(CLP)"·error={fieldState.error?.message}` with `⏎··············label="Costo·estimado·refinanciamiento·(CLP)"⏎··············error={fieldState.error?.message}⏎············`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/features/refinance/RefinanceResultCard.tsx
+   1:22  warning  'Text' is defined but never used    @typescript-eslint/no-unused-vars
+  11:10  warning  'colors' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/johann/repos/mealcanza/src/features/refinance/RefinanceSimulatorScreen.tsx
+   13:9   warning  Replace `⏎··refinanceFaqs,⏎··refinanceRelatedLinks,⏎` with `·refinanceFaqs,·refinanceRelatedLinks·`  prettier/prettier
+  127:97  warning  Insert `·y`                                                                                          prettier/prettier
+  128:14  warning  Delete `·y`                                                                                          prettier/prettier
+
+/home/johann/repos/mealcanza/src/modules/suite/components/ToolAccessButton.tsx
+  1:9  warning  Replace `·Platform,·Pressable,·StyleSheet,·Text,·View,·type·PressableStateCallbackType·` with `⏎··Platform,⏎··Pressable,⏎··StyleSheet,⏎··Text,⏎··View,⏎··type·PressableStateCallbackType,⏎`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/modules/suite/screens/HomeScreen.tsx
+  33:21  warning  Replace `⏎········header={<SiteHeader·/>}⏎········footer={<SiteFooter·/>}⏎······` with `·header={<SiteHeader·/>}·footer={<SiteFooter·/>}`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/repositories/AnalyticsRepository.ts
+  21:6  warning  Replace `·name:·'related_calculator_opened';·from:·CalculatorAnalyticsType;·to:·CalculatorAnalyticsType` with `⏎······name:·'related_calculator_opened';⏎······from:·CalculatorAnalyticsType;⏎······to:·CalculatorAnalyticsType;⏎···`      prettier/prettier
+  23:6  warning  Replace `·name:·'simulation_completed';·type:·'mortgage'·|·'refinance'·|·'affordability'·|·'income-required'` with `⏎······name:·'simulation_completed';⏎······type:·'mortgage'·|·'refinance'·|·'affordability'·|·'income-required';⏎···`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/services/shareResultService.ts
+   20:18  warning  Delete `⏎···`                                                          prettier/prettier
+  100:53  warning  Replace `⏎··monthlySavings:·number;⏎` with `·monthlySavings:·number·`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/services/simulationHistoryService.ts
+  25:45  warning  Replace `⏎··entries:·SimulationHistoryEntry[],⏎` with `entries:·SimulationHistoryEntry[]`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/services/ufService.ts
+  7:11  warning  Array type using 'Array<T>' is forbidden. Use 'T[]' instead  @typescript-eslint/array-type
+
+/home/johann/repos/mealcanza/src/types/simulationHistory.ts
+  4:36  warning  Replace `⏎··|·'mortgage'⏎··|·'refinance'⏎··|·'affordability'⏎·` with `·'mortgage'·|·'refinance'·|·'affordability'`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/utils/affordabilityCalculations.ts
+   8:24  warning  Delete `⏎···`  prettier/prettier
+  28:31  warning  Delete `⏎···`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/utils/affordabilityScore.ts
+  7:39  warning  Replace `⏎··|·'comfortable'⏎··|·'reasonable'⏎··|·'adjusted'⏎·` with `·'comfortable'·|·'reasonable'·|·'adjusted'`  prettier/prettier
+
+/home/johann/repos/mealcanza/src/utils/incomeRequiredCalculations.ts
+  42:22  warning  Replace `input:·IncomeRequiredInput):·Omit<⏎··IncomeRequiredResult,⏎··'diagnosticMessage'⏎` with `⏎··input:·IncomeRequiredInput,⏎):·Omit<IncomeRequiredResult,·'diagnosticMessage'`  prettier/prettier
+  75:41  warning  Replace `⏎··input:·IncomeRequiredInput,⏎` with `input:·IncomeRequiredInput`                                                                                                          prettier/prettier
+
+/home/johann/repos/mealcanza/src/utils/simulationHistoryLogic.ts
+  67:22  warning  Replace `⏎····(a,·b)·=>·new·Date(b.createdAt).getTime()·-·new·Date(a.createdAt).getTime(),⏎··` with `(a,·b)·=>·new·Date(b.createdAt).getTime()·-·new·Date(a.createdAt).getTime()`  prettier/prettier
+
+✖ 90 problems (0 errors, 90 warnings)
+  0 errors and 84 warnings potentially fixable with the `--fix` option.
+

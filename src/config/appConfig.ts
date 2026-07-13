@@ -1,12 +1,14 @@
+import { SITE_URL } from '@/config/site';
+
 /** Configuración de aplicación (UF, fallbacks, enlaces, SEO). */
 export const appConfig = {
-  /** URL pública del sitio (sin slash final). Vacío → canonical relativo / omitido en OG. */
-  siteUrl: '' as string,
+  /** URL pública del sitio (sin slash final). */
+  siteUrl: SITE_URL,
   /**
    * URL pública para compartir resultados (web o landing).
-   * Vacío → el mensaje de share usa “Disponible próximamente.”
+   * Por defecto coincide con el sitio.
    */
-  appUrl: '' as string,
+  appUrl: SITE_URL,
   /** Email de contacto. Vacío → la página de contacto muestra “Próximamente”. */
   contactEmail: '' as string,
   /** URL de descarga (Google Play). Vacío → texto "Disponible pronto en Google Play." */

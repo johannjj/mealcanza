@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Button } from '@/components/ui/Button';
+import { Heading } from '@/components/ui/Heading';
 import { HeroIllustration } from '@/modules/suite/components/HeroIllustration';
 import { homeCopy } from '@/constants/copy';
 import { useResponsive } from '@/hooks/useResponsive';
@@ -14,9 +15,9 @@ export function HeroSection() {
   return (
     <View style={[styles.wrap, isDesktop && styles.wrapDesktop]}>
       <View style={[styles.copy, isDesktop && styles.copyDesktop]}>
-        <Text style={styles.title} accessibilityRole="header">
+        <Heading level={1} style={styles.title}>
           {homeCopy.heroTitle}
-        </Text>
+        </Heading>
         <Text style={styles.subtitle}>{homeCopy.heroSubtitle}</Text>
         <View style={styles.actions}>
           <Button

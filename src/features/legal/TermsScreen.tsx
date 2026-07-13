@@ -3,10 +3,21 @@ import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { PageSeo } from '@/components/seo/PageSeo';
+import { Breadcrumbs, breadcrumbsToSeo } from '@/components/ui/Breadcrumbs';
 import { Card } from '@/components/ui/Card';
+import { Heading } from '@/components/ui/Heading';
+import { navCopy } from '@/constants/copy';
 import { seoPages } from '@/constants/seo';
+import { routes } from '@/navigation/routes';
 import { colors, spacing } from '@/theme';
 import { layout } from '@/theme/layout';
+
+const PAGE_TITLE = 'Términos de uso';
+
+const breadcrumbs = [
+  { label: navCopy.home, href: routes.home },
+  { label: PAGE_TITLE },
+];
 
 const sections = [
   {
@@ -38,22 +49,25 @@ const sections = [
 export function TermsScreen() {
   return (
     <>
-      <PageSeo page={seoPages.terms} />
+      <PageSeo page={seoPages.terms} breadcrumbs={breadcrumbsToSeo(breadcrumbs, routes.terms)} />
       <PageContainer
         header={<SiteHeader />}
         footer={<SiteFooter />}
         contentMaxWidth={layout.formMaxWidth}
       >
-        <Text style={styles.title} accessibilityRole="header">
-          Términos de uso
-        </Text>
+        <Breadcrumbs items={breadcrumbs} />
+        <Heading level={1} style={styles.title}>
+          {PAGE_TITLE}
+        </Heading>
         <Text style={styles.intro}>
           Al usar ¿Me alcanza? aceptas que las herramientas son de carácter informativo y
           referencial.
         </Text>
         {sections.map((section) => (
           <Card key={section.title} style={styles.card}>
-            <Text style={styles.heading}>{section.title}</Text>
+            <Heading level={2} style={styles.heading}>
+              {section.title}
+            </Heading>
             <Text style={styles.body}>{section.body}</Text>
           </Card>
         ))}

@@ -80,6 +80,18 @@ npm run typecheck     # TypeScript
 npm run test          # Tests unitarios (Jest)
 ```
 
+## Web estática (SEO / Amplify)
+
+La web se exporta con HTML por ruta (`web.output: "static"`). Dominio provisional: `https://mealcanza.cl` (`SITE_URL` / `EXPO_PUBLIC_SITE_URL` en `src/config/site.ts`).
+
+```bash
+npm run build:production   # export + validación SEO
+npm run web:serve          # servir dist/ localmente
+npm run seo:check          # solo validar dist/
+```
+
+Guía completa: [docs/DEPLOY_SEO.md](docs/DEPLOY_SEO.md) (Amplify, redirects 301, Search Console, caché).
+
 ## Probar en Expo Go (recomendado)
 
 Esta app está pensada para **Android**. La forma más simple de probarla:

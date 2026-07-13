@@ -6,8 +6,17 @@ import { ToolPageLayout } from '@/components/layout/ToolPageLayout';
 import { CalculatorExplainer } from '@/components/results/CalculatorExplainer';
 import { EditCalculationButton } from '@/components/results/EditCalculationButton';
 import { RelatedCalculatorsSection } from '@/components/results/RelatedCalculatorsSection';
+import { PageSeo } from '@/components/seo/PageSeo';
+import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
+import { Heading } from '@/components/ui/Heading';
 import { ShareResultButton } from '@/components/ui/ShareResultButton';
+import {
+  refinanceFaqs,
+  refinanceRelatedLinks,
+  refinanceExplainer,
+} from '@/constants/calculatorSeoContent';
 import { suiteCopy } from '@/constants/copy';
+import { seoPages } from '@/constants/seo';
 import { refinanceFormDevDefaults } from '@/config/formDevDefaults';
 import { colors, spacing } from '@/theme';
 import type { RefinanceResult } from '@/types/financial';
@@ -92,36 +101,60 @@ export function RefinanceSimulatorScreen() {
 
   const isResult = phase === 'result' && result && submittedValues;
 
+  const breadcrumbs = [
+    { label: 'Inicio', href: routes.home },
+    { label: 'Vivienda', href: routes.vivienda },
+    { label: 'Refinanciar' },
+  ];
+
   return (
-    <ToolPageLayout scrollRef={scrollRef}>
-      {phase === 'form' ? (
-        <>
-          <Text style={styles.title}>Simulador de refinanciamiento</Text>
-          <Text style={styles.subtitle}>
-            Compara tu crédito actual con una nueva tasa estimada y mira el ahorro potencial.
-          </Text>
-        </>
-      ) : null}
-
-      {isResult ? (
-        <View style={styles.resultWrap}>
-          <RefinanceResultCard result={result} values={submittedValues} />
-          <ShareResultButton onPress={() => void handleShare()} />
-          <EditCalculationButton label={suiteCopy.editData} onPress={handleEdit} />
-          <RelatedCalculatorsSection from="refinance" />
-        </View>
-      ) : (
-        <RefinanceFormCard control={control} onSubmit={onSubmit} formError={formError} />
-      )}
-
-      <CalculatorExplainer
-        title="Sobre este simulador"
-        whatItCalculates="Estima el nuevo dividendo y el ahorro mensual si refinanciaras con otra tasa."
-        dataUsed="Saldo, dividendo actual, tasas, plazo restante y costo estimado de refinanciar."
-        howToRead="El dato principal es el ahorro mensual. Revisa en cuántos meses recuperarías el costo."
-        limitations="No incluye todos los costos bancarios reales ni garantiza condiciones de refinanciamiento."
+    <>
+      <PageSeo
+        page={seoPages.refinance}
+        breadcrumbs={breadcrumbs.map((b) => ({
+          name: b.label,
+          path: (b.href as string) ?? routes.refinance,
+        }))}
+        faqs={refinanceFaqs}
       />
-    </ToolPageLayout>
+      <ToolPageLayout scrollRef={scrollRef}>
+        <Breadcrumbs items={breadcrumbs} />
+        {phase === 'form' ? (
+          <>
+            <Heading level={1} style={styles.title}>
+              Simulador de refinanciamiento hipotecario
+            </Heading>
+            <Text style={styles.subtitle}>
+              Compara tu dividendo actual con una nueva tasa estimada, calcula el ahorro mensual
+              y revisa en cuántos meses recuperarías el costo de refinanciar.
+            </Text>
+          </>
+        ) : null}
+
+        {isResult ? (
+          <View style={styles.resultWrap}>
+            <RefinanceResultCard result={result} values={submittedValues} />
+            <ShareResultButton onPress={() => void handleShare()} />
+            <EditCalculationButton label={suiteCopy.editData} onPress={handleEdit} />
+            <RelatedCalculatorsSection from="refinance" />
+          </View>
+        ) : (
+          <RefinanceFormCard control={control} onSubmit={onSubmit} formError={formError} />
+        )}
+
+        <CalculatorExplainer
+          title={refinanceExplainer.title}
+          intro={refinanceExplainer.intro}
+          sections={refinanceExplainer.sections}
+          whatItCalculates={refinanceExplainer.whatItCalculates}
+          dataUsed={refinanceExplainer.dataUsed}
+          howToRead={refinanceExplainer.howToRead}
+          limitations={refinanceExplainer.limitations}
+          faqs={refinanceFaqs}
+          relatedLinks={refinanceRelatedLinks}
+        />
+      </ToolPageLayout>
+    </>
   );
 }
 

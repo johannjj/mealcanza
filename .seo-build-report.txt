@@ -1,0 +1,119 @@
+SEO Build Report - mealcanza
+Date: 2026-07-13
+Repo: /home/johann/repos/mealcanza
+
+================================================================================
+SUMMARY
+================================================================================
+All critical gates passed. No TypeScript/syntax fixes were required in this run
+(prior Metro StyleSheet SyntaxErrors appear already resolved). Financial
+calculation logic was not modified.
+
+| Step              | Result                                      |
+|-------------------|---------------------------------------------|
+| typecheck         | PASS (tsc --noEmit, exit 0)                 |
+| build:production  | PASS (web:build + seo:check, exit 0)        |
+| seo:check         | PASS (13 rutas, 0 aviso(s))                 |
+| npm test          | PASS (15 suites, 54 tests)                  |
+| lint              | PASS exit 0 (0 errors, 90 warnings)         |
+
+Artifacts: .typecheck-out.txt, .build-out.txt, .test-out.txt, .lint-out.txt
+
+================================================================================
+1) TYPECHECK
+================================================================================
+Command: npm run typecheck
+Result: PASS - no diagnostics.
+
+================================================================================
+2) PRODUCTION BUILD + SEO CHECK
+================================================================================
+Command: npm run build:production
+  -> npm run web:build && npm run seo:check
+
+web:build:
+  - generate-seo-files: SITE_URL=https://mealcanza.cl
+  - Wrote public/robots.txt and public/sitemap.xml (13 URLs)
+  - expo export --platform web
+  - Static rendering enabled
+  - Exported: dist
+  - Static routes (20): /lead, /, /contacto, /mortgage, /terminos, /_sitemap,
+    /refinance, /+not-found, /privacidad, /affordability, /aprende, /vivienda,
+    /income-required, /aprende/que-es-la-uf, /vivienda/refinanciar,
+    /aprende/carga-financiera, /vivienda/simular-credito,
+    /vivienda/capacidad-de-pago, /vivienda/cuanto-deberia-ganar,
+    /aprende/cuando-conviene-refinanciar
+
+seo:check:
+  - seo:check OK (13 rutas, 0 aviso(s)).
+
+================================================================================
+3) TESTS
+================================================================================
+Command: npm test (jest)
+Result: PASS
+  Test Suites: 15 passed, 15 total
+  Tests:       54 passed, 54 total
+  Time:        ~1.12 s
+
+================================================================================
+4) LINT
+================================================================================
+Command: npm run lint (eslint . --ext .ts,.tsx)
+Result: exit 0 - 0 errors, 90 warnings (mostly prettier/prettier;
+  unused-vars in RelatedCalculatorsSection, ResultMetric, Breadcrumbs,
+  TrustNotes, RefinanceResultCard; array-type in PageSeo/SeoHead/ufService).
+  No blocking lint errors. Warnings not auto-fixed in this run.
+
+================================================================================
+5) DIST HTML CONFIRMATION (title + canonical samples)
+================================================================================
+dist/ contains 20 HTML files. Primary SEO landing pages have
+<title data-rh="true"> and <link rel="canonical"> as expected.
+
+Sample pages:
+
+--- dist/index.html ---
+title:     ¿Me alcanza? Calculadoras financieras para Chile
+canonical: https://mealcanza.cl/
+
+--- dist/vivienda/simular-credito.html ---
+title:     Simulador de crédito hipotecario en Chile | ¿Me alcanza?
+canonical: https://mealcanza.cl/vivienda/simular-credito
+
+--- dist/vivienda/capacidad-de-pago.html ---
+title:     Calculadora de capacidad de pago para vivienda | ¿Me alcanza?
+canonical: https://mealcanza.cl/vivienda/capacidad-de-pago
+
+--- dist/vivienda/refinanciar.html ---
+title:     Simulador de refinanciamiento hipotecario | ¿Me alcanza?
+canonical: https://mealcanza.cl/vivienda/refinanciar
+
+--- dist/vivienda/cuanto-deberia-ganar.html ---
+title:     ¿Cuánto debo ganar para comprar una propiedad? | ¿Me alcanza?
+canonical: https://mealcanza.cl/vivienda/cuanto-deberia-ganar
+
+--- dist/aprende/index.html ---
+title:     Guías para comprar vivienda y entender la UF | ¿Me alcanza?
+canonical: https://mealcanza.cl/aprende
+
+--- dist/+not-found.html ---
+title:     Página no encontrada | ¿Me alcanza?
+canonical: https://mealcanza.cl/404
+
+Note: dist/mortgage.html (and similar alias calculator routes like
+affordability.html / refinance.html / income-required.html) exist as static
+routes but may have empty/minimal SEO head compared to canonical /vivienda/*
+pages - seo:check covers the 13 primary SEO routes successfully.
+
+================================================================================
+6) CODE FIXES THIS RUN
+================================================================================
+None required. typecheck, build, seo:check, and tests all succeeded without
+source changes.
+
+================================================================================
+VERDICT
+================================================================================
+READY: typecheck OK | production build OK | seo:check OK | tests OK | lint (0 errors) OK
+dist HTML present with title + canonical on primary SEO pages.

@@ -1,0 +1,25 @@
+
+> hipoteca-chile@1.0.0 test
+> jest
+
+PASS src/__tests__/shareService.test.ts
+PASS src/__tests__/affordabilityScore.test.ts
+PASS src/__tests__/mortgageResultMessaging.test.ts
+PASS src/__tests__/refinanceCalculations.test.ts
+PASS src/__tests__/validations.test.ts
+PASS src/__tests__/ufService.test.ts
+PASS src/__tests__/numericInput.test.ts
+PASS src/__tests__/incomeRequiredCalculations.test.ts
+PASS src/__tests__/mortgageTermComparison.test.ts
+PASS src/__tests__/layout.test.ts
+PASS src/__tests__/uf.test.ts
+PASS src/__tests__/simulationHistory.test.ts
+PASS src/__tests__/mortgageCalculations.test.ts
+PASS src/__tests__/affordabilityCalculations.test.ts
+PASS src/__tests__/refinanceRecommendation.test.ts
+
+Test Suites: 15 passed, 15 total
+Tests:       54 passed, 54 total
+Snapshots:   0 total
+Time:        1.12 s, estimated 2 s
+Ran all test suites.

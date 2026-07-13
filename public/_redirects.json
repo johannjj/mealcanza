@@ -1,0 +1,72 @@
+[
+  {
+    "source": "https://www.mealcanza.cl",
+    "status": "301",
+    "target": "https://mealcanza.cl"
+  },
+  {
+    "source": "http://mealcanza.cl",
+    "status": "301",
+    "target": "https://mealcanza.cl"
+  },
+  {
+    "source": "http://www.mealcanza.cl",
+    "status": "301",
+    "target": "https://mealcanza.cl"
+  },
+  {
+    "source": "/mortgage",
+    "status": "301",
+    "target": "/vivienda/simular-credito"
+  },
+  {
+    "source": "/mortgage/",
+    "status": "301",
+    "target": "/vivienda/simular-credito"
+  },
+  {
+    "source": "/refinance",
+    "status": "301",
+    "target": "/vivienda/refinanciar"
+  },
+  {
+    "source": "/refinance/",
+    "status": "301",
+    "target": "/vivienda/refinanciar"
+  },
+  {
+    "source": "/affordability",
+    "status": "301",
+    "target": "/vivienda/capacidad-de-pago"
+  },
+  {
+    "source": "/affordability/",
+    "status": "301",
+    "target": "/vivienda/capacidad-de-pago"
+  },
+  {
+    "source": "/income-required",
+    "status": "301",
+    "target": "/vivienda/cuanto-deberia-ganar"
+  },
+  {
+    "source": "/income-required/",
+    "status": "301",
+    "target": "/vivienda/cuanto-deberia-ganar"
+  },
+  {
+    "source": "/<*>/",
+    "status": "301",
+    "target": "/<*>"
+  },
+  {
+    "source": "/404",
+    "status": "404",
+    "target": "/404.html"
+  },
+  {
+    "source": "</^[^.]+$|\\.(?!(css|gif|ico|jpg|js|png|txt|svg|woff|woff2|ttf|map|json|webp|xml)$)([^.]+$)/>",
+    "status": "404",
+    "target": "/404.html"
+  }
+]

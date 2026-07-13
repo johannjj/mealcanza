@@ -1,0 +1,47 @@
+
+> hipoteca-chile@1.0.0 build:production
+> npm run web:build && npm run seo:check
+
+
+> hipoteca-chile@1.0.0 web:build
+> node scripts/generate-seo-files.mjs && expo export --platform web
+
+[generate-seo-files] SITE_URL=https://mealcanza.cl
+[generate-seo-files] Wrote public/robots.txt and public/sitemap.xml (13 URLs)
+Using src/app as the root directory for Expo Router.
+Starting Metro Bundler
+Static rendering is enabled. Learn more: https://docs.expo.dev/router/reference/static-rendering/
+λ Bundled 1419ms node_modules/expo-router/node/render.js (1155 modules)
+Web Bundled 1799ms node_modules/expo-router/entry.js (1157 modules)
+
+› web bundles (1):
+_expo/static/js/web/entry-9a6e405d42393669d5567badb92d4aaf.js (2.41 MB)
+
+› Static routes (20):
+/lead (30.7 kB)
+/ (index) (46.1 kB)
+/contacto (31.3 kB)
+/mortgage (23.5 kB)
+/terminos (33.5 kB)
+/_sitemap (44.8 kB)
+/refinance (23.5 kB)
+/+not-found (32.6 kB)
+/privacidad (34.7 kB)
+/affordability (23.5 kB)
+/aprende (33.1 kB)
+/vivienda (33.9 kB)
+/income-required (23.5 kB)
+/aprende/que-es-la-uf (36.1 kB)
+/vivienda/refinanciar (39.6 kB)
+/aprende/carga-financiera (36 kB)
+/vivienda/simular-credito (43.4 kB)
+/vivienda/capacidad-de-pago (39.4 kB)
+/vivienda/cuanto-deberia-ganar (41.2 kB)
+/aprende/cuando-conviene-refinanciar (36.1 kB)
+
+Exported: dist
+
+> hipoteca-chile@1.0.0 seo:check
+> node scripts/check-seo.mjs
+
+seo:check OK (13 rutas, 0 aviso(s)).

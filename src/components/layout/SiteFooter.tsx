@@ -1,5 +1,5 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { useRouter } from 'expo-router';
+import { StyleSheet, Text, View } from 'react-native';
+import { AppLink } from '@/components/ui/AppLink';
 import { ContentContainer } from '@/components/ui/ContentContainer';
 import { ResponsiveGrid } from '@/components/ui/ResponsiveGrid';
 import { educationArticles, housingTools } from '@/config/modules';
@@ -9,12 +9,6 @@ import { colors, spacing } from '@/theme';
 import { layout } from '@/theme/layout';
 
 export function SiteFooter() {
-  const router = useRouter();
-
-  const go = (href: string) => {
-    router.push(href as '/');
-  };
-
   return (
     <View style={styles.wrap} accessibilityRole="summary">
       <ContentContainer style={styles.inner}>
@@ -28,60 +22,50 @@ export function SiteFooter() {
           <View style={styles.column}>
             <Text style={styles.heading}>{footerCopy.toolsTitle}</Text>
             {housingTools.map((tool) => (
-              <Pressable
+              <AppLink
                 key={tool.id}
-                onPress={() => go(tool.route)}
+                href={tool.route}
                 style={styles.link}
-                accessibilityRole="link"
+                textStyle={styles.linkText}
               >
-                <Text style={styles.linkText}>{tool.label}</Text>
-              </Pressable>
+                {tool.label}
+              </AppLink>
             ))}
           </View>
 
           <View style={styles.column}>
             <Text style={styles.heading}>{footerCopy.learnTitle}</Text>
             {educationArticles.map((article, index) => (
-              <Pressable
+              <AppLink
                 key={article.id}
-                onPress={() => go(article.route)}
+                href={article.route}
                 style={styles.link}
-                accessibilityRole="link"
+                textStyle={styles.linkText}
               >
-                <Text style={styles.linkText}>
-                  {index === 0
-                    ? footerCopy.learnUf
-                    : index === 1
-                      ? footerCopy.learnLoad
-                      : footerCopy.learnRefinance}
-                </Text>
-              </Pressable>
+                {index === 0
+                  ? footerCopy.learnUf
+                  : index === 1
+                    ? footerCopy.learnLoad
+                    : footerCopy.learnRefinance}
+              </AppLink>
             ))}
           </View>
 
           <View style={styles.column}>
             <Text style={styles.heading}>{footerCopy.legalTitle}</Text>
-            <Pressable
-              onPress={() => go(routes.privacy)}
+            <AppLink
+              href={routes.privacy}
               style={styles.link}
-              accessibilityRole="link"
+              textStyle={styles.linkText}
             >
-              <Text style={styles.linkText}>{footerCopy.privacy}</Text>
-            </Pressable>
-            <Pressable
-              onPress={() => go(routes.terms)}
-              style={styles.link}
-              accessibilityRole="link"
-            >
-              <Text style={styles.linkText}>{footerCopy.terms}</Text>
-            </Pressable>
-            <Pressable
-              onPress={() => go(routes.contact)}
-              style={styles.link}
-              accessibilityRole="link"
-            >
-              <Text style={styles.linkText}>{footerCopy.contact}</Text>
-            </Pressable>
+              {footerCopy.privacy}
+            </AppLink>
+            <AppLink href={routes.terms} style={styles.link} textStyle={styles.linkText}>
+              {footerCopy.terms}
+            </AppLink>
+            <AppLink href={routes.contact} style={styles.link} textStyle={styles.linkText}>
+              {footerCopy.contact}
+            </AppLink>
           </View>
         </ResponsiveGrid>
 

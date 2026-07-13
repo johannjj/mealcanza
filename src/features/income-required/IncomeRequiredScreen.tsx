@@ -6,9 +6,18 @@ import { ToolPageLayout } from '@/components/layout/ToolPageLayout';
 import { CalculatorExplainer } from '@/components/results/CalculatorExplainer';
 import { EditCalculationButton } from '@/components/results/EditCalculationButton';
 import { RelatedCalculatorsSection } from '@/components/results/RelatedCalculatorsSection';
+import { PageSeo } from '@/components/seo/PageSeo';
+import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
+import { Heading } from '@/components/ui/Heading';
 import { ShareResultButton } from '@/components/ui/ShareResultButton';
 import { UfRateBanner } from '@/features/mortgage/UfRateBanner';
-import { incomeRequiredCopy, suiteCopy } from '@/constants/copy';
+import {
+  incomeRequiredFaqs,
+  incomeRelatedLinks,
+  incomeRequiredExplainer,
+} from '@/constants/calculatorSeoContent';
+import { suiteCopy } from '@/constants/copy';
+import { seoPages } from '@/constants/seo';
 import { incomeRequiredFormDevDefaults } from '@/config/formDevDefaults';
 import { colors, spacing } from '@/theme';
 import type { IncomeRequiredAnalysis } from '@/utils/incomeRequiredCalculations';
@@ -142,56 +151,82 @@ export function IncomeRequiredScreen() {
 
   const isResult = phase === 'result' && analysis && submittedValues && uf;
 
+  const breadcrumbs = [
+    { label: 'Inicio', href: routes.home },
+    { label: 'Vivienda', href: routes.vivienda },
+    { label: '¿Cuánto debería ganar?' },
+  ];
+
   return (
-    <ToolPageLayout scrollRef={scrollRef}>
-      {phase === 'form' ? (
-        <>
-          <Text style={styles.title}>{incomeRequiredCopy.title}</Text>
-          <Text style={styles.subtitle}>{incomeRequiredCopy.subtitle}</Text>
-          <UfRateBanner uf={uf} loading={ufLoading} />
-        </>
-      ) : null}
-
-      {isResult ? (
-        <View style={styles.resultWrap}>
-          <IncomeRequiredResultCard
-            analysis={analysis}
-            values={submittedValues}
-            ufValue={uf.value}
-            loadPercent={loadPercent}
-          />
-          <ShareResultButton onPress={() => void handleShare()} />
-          <EditCalculationButton label={suiteCopy.editData} onPress={handleEdit} />
-          <RelatedCalculatorsSection
-            from="income-required"
-            draft={{
-              propertyValueUf: submittedValues.propertyValueUf,
-              downPaymentUf: submittedValues.downPaymentUf,
-              annualRatePercent: submittedValues.annualRatePercent,
-              termYears: submittedValues.termYears,
-              loadPercent,
-              netMonthlyIncome: analysis.requiredIncome,
-            }}
-          />
-        </View>
-      ) : (
-        <IncomeRequiredFormCard
-          control={control}
-          loadPercent={loadPercent}
-          onLoadPercentChange={setLoadPercent}
-          onSubmit={onSubmit}
-          formError={formError}
-        />
-      )}
-
-      <CalculatorExplainer
-        title="Sobre esta calculadora"
-        whatItCalculates="Estima la renta líquida necesaria para sostener un dividendo con un porcentaje de carga elegido."
-        dataUsed="Propiedad, pie, tasa, plazo, UF y porcentaje máximo de carga financiera."
-        howToRead="El número principal es la renta estimada. Compara 25%, 30% y 35% para ver escenarios más conservadores o ajustados."
-        limitations="Es referencial. No garantiza aprobación ni incluye seguros u otros costos."
+    <>
+      <PageSeo
+        page={seoPages.incomeRequired}
+        breadcrumbs={breadcrumbs.map((b) => ({
+          name: b.label,
+          path: (b.href as string) ?? routes.incomeRequired,
+        }))}
+        faqs={incomeRequiredFaqs}
       />
-    </ToolPageLayout>
+      <ToolPageLayout scrollRef={scrollRef}>
+        <Breadcrumbs items={breadcrumbs} />
+        {phase === 'form' ? (
+          <>
+            <Heading level={1} style={styles.title}>
+              ¿Cuánto debo ganar para comprar una propiedad?
+            </Heading>
+            <Text style={styles.subtitle}>
+              Estima la renta líquida necesaria para sostener el dividendo de una propiedad según
+              su valor en UF, pie, tasa, plazo y el porcentaje de carga que elijas.
+            </Text>
+            <UfRateBanner uf={uf} loading={ufLoading} />
+          </>
+        ) : null}
+
+        {isResult ? (
+          <View style={styles.resultWrap}>
+            <IncomeRequiredResultCard
+              analysis={analysis}
+              values={submittedValues}
+              ufValue={uf.value}
+              loadPercent={loadPercent}
+            />
+            <ShareResultButton onPress={() => void handleShare()} />
+            <EditCalculationButton label={suiteCopy.editData} onPress={handleEdit} />
+            <RelatedCalculatorsSection
+              from="income-required"
+              draft={{
+                propertyValueUf: submittedValues.propertyValueUf,
+                downPaymentUf: submittedValues.downPaymentUf,
+                annualRatePercent: submittedValues.annualRatePercent,
+                termYears: submittedValues.termYears,
+                loadPercent,
+                netMonthlyIncome: analysis.requiredIncome,
+              }}
+            />
+          </View>
+        ) : (
+          <IncomeRequiredFormCard
+            control={control}
+            loadPercent={loadPercent}
+            onLoadPercentChange={setLoadPercent}
+            onSubmit={onSubmit}
+            formError={formError}
+          />
+        )}
+
+        <CalculatorExplainer
+          title={incomeRequiredExplainer.title}
+          intro={incomeRequiredExplainer.intro}
+          sections={incomeRequiredExplainer.sections}
+          whatItCalculates={incomeRequiredExplainer.whatItCalculates}
+          dataUsed={incomeRequiredExplainer.dataUsed}
+          howToRead={incomeRequiredExplainer.howToRead}
+          limitations={incomeRequiredExplainer.limitations}
+          faqs={incomeRequiredFaqs}
+          relatedLinks={incomeRelatedLinks}
+        />
+      </ToolPageLayout>
+    </>
   );
 }
 

@@ -37,6 +37,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   web: {
     favicon: './assets/favicon.png',
     bundler: 'metro',
+    output: 'static',
     name: '¿Me alcanza?',
     shortName: '¿Me alcanza?',
     description:
@@ -49,5 +50,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     eas: {
       projectId: 'REPLACE_WITH_EAS_PROJECT_ID',
     },
+    siteUrl: process.env.EXPO_PUBLIC_SITE_URL || process.env.SITE_URL || 'https://mealcanza.cl',
   },
 });

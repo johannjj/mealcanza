@@ -2,17 +2,35 @@ import { useEffect } from 'react';
 import 'react-native-gesture-handler';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import {
+  SafeAreaProvider,
+  initialWindowMetrics,
+} from 'react-native-safe-area-context';
 import { HeaderBackButton } from '@/navigation/HeaderBackButton';
 import { services } from '@/services/container';
 import { colors } from '@/theme';
+import { setupExpoRouterKeyCleaner } from '@/utils/cleanupExpoRouterKey';
+
+/**
+ * Métricas iniciales para SSR / export estático web.
+ * Evita useLayoutEffect async de SafeAreaProvider en el servidor.
+ */
+const ssrSafeAreaMetrics = initialWindowMetrics ?? {
+  frame: { x: 0, y: 0, width: 0, height: 0 },
+  insets: { top: 0, left: 0, right: 0, bottom: 0 },
+};
 
 export default function RootLayout() {
   useEffect(() => {
     void services.userRepository.getAnonymousUserId();
   }, []);
 
+  useEffect(() => {
+    return setupExpoRouterKeyCleaner();
+  }, []);
+
   return (
-    <>
+    <SafeAreaProvider initialMetrics={ssrSafeAreaMetrics}>
       <StatusBar style="dark" />
       <Stack
         screenOptions={{
@@ -52,6 +70,6 @@ export default function RootLayout() {
           options={{ title: 'Solicitar orientación', headerShown: true }}
         />
       </Stack>
-    </>
+    </SafeAreaProvider>
   );
 }

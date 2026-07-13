@@ -1,0 +1,44 @@
+version: 1
+applications:
+  - frontend:
+      phases:
+        preBuild:
+          commands:
+            - npm ci
+        build:
+          commands:
+            - export SITE_URL="${SITE_URL:-https://mealcanza.cl}"
+            - export EXPO_PUBLIC_SITE_URL="${EXPO_PUBLIC_SITE_URL:-$SITE_URL}"
+            - npm run build:production
+      artifacts:
+        baseDirectory: dist
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - node_modules/**/*
+      customHeaders:
+        - pattern: '**/*.html'
+          headers:
+            - key: Cache-Control
+              value: 'public, max-age=0, must-revalidate'
+        - pattern: 'robots.txt'
+          headers:
+            - key: Cache-Control
+              value: 'public, max-age=0, must-revalidate'
+        - pattern: 'sitemap.xml'
+          headers:
+            - key: Cache-Control
+              value: 'public, max-age=0, must-revalidate'
+        - pattern: '_expo/**/*'
+          headers:
+            - key: Cache-Control
+              value: 'public, max-age=31536000, immutable'
+        - pattern: 'assets/**/*'
+          headers:
+            - key: Cache-Control
+              value: 'public, max-age=31536000, immutable'
+        - pattern: 'og/**/*'
+          headers:
+            - key: Cache-Control
+              value: 'public, max-age=604800'

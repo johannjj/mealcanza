@@ -6,8 +6,17 @@ import { ToolPageLayout } from '@/components/layout/ToolPageLayout';
 import { CalculatorExplainer } from '@/components/results/CalculatorExplainer';
 import { EditCalculationButton } from '@/components/results/EditCalculationButton';
 import { RelatedCalculatorsSection } from '@/components/results/RelatedCalculatorsSection';
+import { PageSeo } from '@/components/seo/PageSeo';
+import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
+import { Heading } from '@/components/ui/Heading';
 import { ShareResultButton } from '@/components/ui/ShareResultButton';
-import { mortgageCopy, suiteCopy } from '@/constants/copy';
+import {
+  mortgageFaqs,
+  mortgageRelatedLinks,
+  mortgageExplainer,
+} from '@/constants/calculatorSeoContent';
+import { suiteCopy } from '@/constants/copy';
+import { seoPages } from '@/constants/seo';
 import { appConfig } from '@/config/appConfig';
 import { mortgageFormDevDefaults } from '@/config/formDevDefaults';
 import { colors, spacing } from '@/theme';
@@ -190,69 +199,83 @@ export function MortgageSimulatorScreen() {
 
   const isResult = phase === 'result' && result && submittedValues && uf && score;
 
+  const breadcrumbs = [
+    { label: 'Inicio', href: routes.home },
+    { label: 'Vivienda', href: routes.vivienda },
+    { label: 'Simular crédito' },
+  ];
+
   return (
-    <ToolPageLayout scrollRef={scrollRef}>
-      {phase === 'form' ? (
-        <>
-          <Text style={styles.title}>{mortgageCopy.screenTitle}</Text>
-          <Text style={styles.subtitle}>{mortgageCopy.screenSubtitle}</Text>
-        </>
-      ) : null}
-
-      {phase === 'form' ? <UfRateBanner uf={uf} loading={ufLoading} /> : null}
-
-      {isResult ? (
-        <View style={styles.resultWrap}>
-          <MortgageResultCard
-            result={result}
-            values={submittedValues}
-            ufValue={uf.value}
-            ufDate={uf.date}
-            compareRows={compareRows}
-            score={score}
-          />
-          <ShareResultButton onPress={() => void handleShare()} />
-          <EditCalculationButton
-            label={suiteCopy.editData}
-            onPress={handleEditSimulation}
-          />
-          <RelatedCalculatorsSection
-            from="mortgage"
-            draft={{
-              propertyValueUf: submittedValues.propertyValueUf,
-              downPaymentUf: submittedValues.downPaymentUf,
-              annualRatePercent: submittedValues.annualRatePercent,
-              termYears: submittedValues.termYears,
-              netMonthlyIncome: submittedValues.netMonthlyIncome,
-              otherMonthlyCredits: submittedValues.otherMonthlyCredits,
-              netSalary: submittedValues.netMonthlyIncome,
-            }}
-          />
-        </View>
-      ) : (
-        <MortgageFormCard control={control} onSubmit={onSubmit} formError={formError} />
-      )}
-
-      <CalculatorExplainer
-        title="Sobre este simulador"
-        whatItCalculates="Estima un dividendo hipotecario referencial con sistema francés, usando valor de propiedad, pie, tasa, plazo y UF."
-        dataUsed="Propiedad y pie en UF, tasa anual, plazo, renta líquida, otros créditos mensuales y UF del día (o valor de respaldo)."
-        howToRead="El número principal es el dividendo estimado. El Índice ¿Me alcanza? resume el equilibrio mensual de forma referencial. Compara plazos para ver el trade-off entre cuota y costo total."
-        limitations="No incluye seguros, gastos operacionales ni políticas de un banco. No garantiza aprobación crediticia."
-        faqs={[
-          {
-            question: '¿La UF afecta mi dividendo en pesos?',
-            answer:
-              'Sí. Si el crédito está en UF, el valor en pesos puede cambiar cuando varía la UF.',
-          },
-          {
-            question: '¿Qué significa el Índice ¿Me alcanza??',
-            answer:
-              'Es un indicador propio de equilibrio mensual. No es una evaluación bancaria.',
-          },
-        ]}
+    <>
+      <PageSeo
+        page={seoPages.mortgage}
+        breadcrumbs={breadcrumbs.map((b) => ({
+          name: b.label,
+          path: (b.href as string) ?? routes.mortgage,
+        }))}
+        faqs={mortgageFaqs}
       />
-    </ToolPageLayout>
+      <ToolPageLayout scrollRef={scrollRef}>
+        <Breadcrumbs items={breadcrumbs} />
+        {phase === 'form' ? (
+          <>
+            <Heading level={1} style={styles.title}>
+              Simulador de crédito hipotecario en Chile
+            </Heading>
+            <Text style={styles.subtitle}>
+              Esta herramienta permite estimar un dividendo mensual usando el valor de la
+              propiedad, el pie, la tasa anual y el plazo.
+            </Text>
+          </>
+        ) : null}
+
+        {phase === 'form' ? <UfRateBanner uf={uf} loading={ufLoading} /> : null}
+
+        {isResult ? (
+          <View style={styles.resultWrap}>
+            <MortgageResultCard
+              result={result}
+              values={submittedValues}
+              ufValue={uf.value}
+              ufDate={uf.date}
+              compareRows={compareRows}
+              score={score}
+            />
+            <ShareResultButton onPress={() => void handleShare()} />
+            <EditCalculationButton
+              label={suiteCopy.editData}
+              onPress={handleEditSimulation}
+            />
+            <RelatedCalculatorsSection
+              from="mortgage"
+              draft={{
+                propertyValueUf: submittedValues.propertyValueUf,
+                downPaymentUf: submittedValues.downPaymentUf,
+                annualRatePercent: submittedValues.annualRatePercent,
+                termYears: submittedValues.termYears,
+                netMonthlyIncome: submittedValues.netMonthlyIncome,
+                otherMonthlyCredits: submittedValues.otherMonthlyCredits,
+                netSalary: submittedValues.netMonthlyIncome,
+              }}
+            />
+          </View>
+        ) : (
+          <MortgageFormCard control={control} onSubmit={onSubmit} formError={formError} />
+        )}
+
+        <CalculatorExplainer
+          title={mortgageExplainer.title}
+          intro={mortgageExplainer.intro}
+          sections={mortgageExplainer.sections}
+          whatItCalculates={mortgageExplainer.whatItCalculates}
+          dataUsed={mortgageExplainer.dataUsed}
+          howToRead={mortgageExplainer.howToRead}
+          limitations={mortgageExplainer.limitations}
+          faqs={mortgageFaqs}
+          relatedLinks={mortgageRelatedLinks}
+        />
+      </ToolPageLayout>
+    </>
   );
 }
 

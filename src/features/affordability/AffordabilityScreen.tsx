@@ -6,8 +6,17 @@ import { ToolPageLayout } from '@/components/layout/ToolPageLayout';
 import { CalculatorExplainer } from '@/components/results/CalculatorExplainer';
 import { EditCalculationButton } from '@/components/results/EditCalculationButton';
 import { RelatedCalculatorsSection } from '@/components/results/RelatedCalculatorsSection';
+import { PageSeo } from '@/components/seo/PageSeo';
+import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
+import { Heading } from '@/components/ui/Heading';
 import { ShareResultButton } from '@/components/ui/ShareResultButton';
+import {
+  affordabilityFaqs,
+  affordabilityRelatedLinks,
+  affordabilityExplainer,
+} from '@/constants/calculatorSeoContent';
 import { suiteCopy } from '@/constants/copy';
+import { seoPages } from '@/constants/seo';
 import { affordabilityFormDevDefaults } from '@/config/formDevDefaults';
 import { colors, spacing } from '@/theme';
 import type { AffordabilityResult } from '@/types/financial';
@@ -90,43 +99,67 @@ export function AffordabilityScreen() {
 
   const isResult = phase === 'result' && result && submittedValues;
 
+  const breadcrumbs = [
+    { label: 'Inicio', href: routes.home },
+    { label: 'Vivienda', href: routes.vivienda },
+    { label: 'Capacidad de pago' },
+  ];
+
   return (
-    <ToolPageLayout scrollRef={scrollRef}>
-      {phase === 'form' ? (
-        <>
-          <Text style={styles.title}>Capacidad de pago</Text>
-          <Text style={styles.subtitle}>
-            Evalúa cuánto podrías destinar mensualmente a un dividendo según tu renta.
-          </Text>
-        </>
-      ) : null}
-
-      {isResult ? (
-        <View style={styles.resultWrap}>
-          <AffordabilityResultCard result={result} values={submittedValues} />
-          <ShareResultButton onPress={() => void handleShare()} />
-          <EditCalculationButton label={suiteCopy.editData} onPress={handleEdit} />
-          <RelatedCalculatorsSection
-            from="affordability"
-            draft={{
-              netMonthlyIncome: submittedValues.netSalary,
-              netSalary: submittedValues.netSalary,
-              otherMonthlyCredits: submittedValues.monthlyCredits,
-            }}
-          />
-        </View>
-      ) : (
-        <AffordabilityFormCard control={control} onSubmit={onSubmit} />
-      )}
-
-      <CalculatorExplainer
-        title="Sobre esta calculadora"
-        whatItCalculates="Estima un margen mensual y un dividendo máximo sugerido a partir de tu renta y cargas."
-        dataUsed="Sueldo líquido, costo de vivienda actual, créditos, gastos fijos y cargas por dependientes."
-        howToRead="El margen es lo que quedaría tras tus cargas. El dividendo sugerido usa una fracción prudente de ese margen."
-        limitations="No reemplaza evaluación crediticia. No incluye todos los gastos reales del hogar."
+    <>
+      <PageSeo
+        page={seoPages.affordability}
+        breadcrumbs={breadcrumbs.map((b) => ({
+          name: b.label,
+          path: (b.href as string) ?? routes.affordability,
+        }))}
+        faqs={affordabilityFaqs}
       />
-    </ToolPageLayout>
+      <ToolPageLayout scrollRef={scrollRef}>
+        <Breadcrumbs items={breadcrumbs} />
+        {phase === 'form' ? (
+          <>
+            <Heading level={1} style={styles.title}>
+              Calculadora de capacidad de pago para vivienda
+            </Heading>
+            <Text style={styles.subtitle}>
+              Estima cuánto podrías destinar mensualmente a un dividendo considerando tu renta
+              líquida, créditos vigentes, gastos fijos y otras cargas del hogar.
+            </Text>
+          </>
+        ) : null}
+
+        {isResult ? (
+          <View style={styles.resultWrap}>
+            <AffordabilityResultCard result={result} values={submittedValues} />
+            <ShareResultButton onPress={() => void handleShare()} />
+            <EditCalculationButton label={suiteCopy.editData} onPress={handleEdit} />
+            <RelatedCalculatorsSection
+              from="affordability"
+              draft={{
+                netMonthlyIncome: submittedValues.netSalary,
+                netSalary: submittedValues.netSalary,
+                otherMonthlyCredits: submittedValues.monthlyCredits,
+              }}
+            />
+          </View>
+        ) : (
+          <AffordabilityFormCard control={control} onSubmit={onSubmit} />
+        )}
+
+        <CalculatorExplainer
+          title={affordabilityExplainer.title}
+          intro={affordabilityExplainer.intro}
+          sections={affordabilityExplainer.sections}
+          whatItCalculates={affordabilityExplainer.whatItCalculates}
+          dataUsed={affordabilityExplainer.dataUsed}
+          howToRead={affordabilityExplainer.howToRead}
+          limitations={affordabilityExplainer.limitations}
+          faqs={affordabilityFaqs}
+          relatedLinks={affordabilityRelatedLinks}
+        />
+      </ToolPageLayout>
+    </>
   );
 }
 

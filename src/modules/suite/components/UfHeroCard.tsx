@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { Card } from '@/components/ui/Card';
 import { StatusBadge } from '@/components/ui/StatusBadge';
+import { appConfig } from '@/config/appConfig';
 import { homeCopy, mortgageCopy } from '@/constants/copy';
 import { colors, spacing } from '@/theme';
 import type { UfValue } from '@/types/uf';
@@ -44,8 +45,14 @@ export function UfHeroCard() {
     <Card style={styles.card}>
       {loading ? (
         <View style={styles.loading}>
+          <View style={styles.placeholder}>
+            <Text style={styles.ufLabel}>{homeCopy.heroUfLabel}</Text>
+            <Text style={[styles.ufValue, styles.placeholderValue]}>
+              {formatCLP(appConfig.fallbackUfValue)}
+            </Text>
+            <Text style={styles.meta}>{mortgageCopy.ufLoading}</Text>
+          </View>
           <ActivityIndicator color={colors.secondary} />
-          <Text style={styles.loadingText}>{mortgageCopy.ufLoading}</Text>
         </View>
       ) : (
         <View style={styles.row}>
@@ -74,22 +81,29 @@ export function UfHeroCard() {
 const styles = StyleSheet.create({
   card: {
     paddingVertical: spacing.md,
+    minHeight: 88,
   },
   loading: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
     gap: spacing.sm,
-    paddingVertical: spacing.xs,
+    minHeight: 72,
   },
-  loadingText: {
+  placeholder: {
+    flex: 1,
+    gap: 2,
+    opacity: 0.55,
+  },
+  placeholderValue: {
     color: colors.mutedText,
-    fontSize: 13,
   },
   row: {
     flexDirection: 'row',
     alignItems: 'flex-start',
     justifyContent: 'space-between',
     gap: spacing.md,
+    minHeight: 72,
   },
   main: {
     flex: 1,

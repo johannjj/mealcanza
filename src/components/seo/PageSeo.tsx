@@ -1,42 +1,35 @@
-import Head from 'expo-router/head';
-import { Platform } from 'react-native';
-import { appConfig } from '@/config/appConfig';
+import { SeoHead } from '@/components/seo/SeoHead';
+import { buildPageJsonLd } from '@/components/seo/jsonLd';
 import type { PageSeoConfig } from '@/constants/seo';
 
 type Props = {
   page: PageSeoConfig;
+  /** JSON-LD adicional (FAQ, breadcrumbs ya se agregan desde buildPageJsonLd si aplica). */
+  extraJsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
+  breadcrumbs?: { name: string; path: string }[];
+  faqs?: { question: string; answer: string }[];
 };
 
-function absoluteUrl(path: string): string | undefined {
-  if (!appConfig.siteUrl) return undefined;
-  const base = appConfig.siteUrl.replace(/\/$/, '');
-  const normalized = path === '/' ? '' : path;
-  return `${base}${normalized}`;
-}
-
 /**
- * Metadata SEO para web. En nativo no renderiza nada (Head es no-op / web-only).
+ * Wrapper de SeoHead a partir de la config central `seoPages`.
  */
-export function PageSeo({ page }: Props) {
-  if (Platform.OS !== 'web') return null;
-
-  const url = absoluteUrl(page.path);
-  const ogUrl = url ?? page.path;
+export function PageSeo({ page, extraJsonLd, breadcrumbs, faqs }: Props) {
+  const base = buildPageJsonLd(page, { breadcrumbs, faqs });
+  const merged = (() => {
+    if (!extraJsonLd) return base;
+    const extra = Array.isArray(extraJsonLd) ? extraJsonLd : [extraJsonLd];
+    return [...base, ...extra];
+  })();
 
   return (
-    <Head>
-      <title>{page.title}</title>
-      <meta name="description" content={page.description} />
-      {url ? <link rel="canonical" href={url} /> : null}
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content={page.title} />
-      <meta property="og:description" content={page.description} />
-      <meta property="og:url" content={ogUrl} />
-      <meta property="og:locale" content="es_CL" />
-      <meta property="og:site_name" content="¿Me alcanza?" />
-      <meta name="twitter:card" content="summary" />
-      <meta name="twitter:title" content={page.title} />
-      <meta name="twitter:description" content={page.description} />
-    </Head>
+    <SeoHead
+      title={page.title}
+      description={page.description}
+      canonicalPath={page.path}
+      imagePath={page.imagePath}
+      type={page.type}
+      noIndex={page.noIndex}
+      jsonLd={merged.length > 0 ? merged : undefined}
+    />
   );
 }

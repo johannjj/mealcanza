@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
-import { usePathname, useRouter } from 'expo-router';
+import { usePathname } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { AppLink } from '@/components/ui/AppLink';
 import { ContentContainer } from '@/components/ui/ContentContainer';
 import { navCopy, suiteCopy } from '@/constants/copy';
 import { useResponsive } from '@/hooks/useResponsive';
 import { routes } from '@/navigation/routes';
+import type { AppRoute } from '@/navigation/routes';
 import { colors, radius, spacing } from '@/theme';
 import { layout } from '@/theme/layout';
 
@@ -13,7 +15,7 @@ const navItems = [
   { label: navCopy.home, href: routes.home },
   { label: navCopy.vivienda, href: routes.vivienda },
   { label: navCopy.learn, href: routes.learn },
-  { label: navCopy.comingSoon, href: `${routes.home}#proximos` as typeof routes.home },
+  { label: navCopy.comingSoon, href: `${routes.home}#proximos`, isHash: true },
 ] as const;
 
 type Props = {
@@ -22,25 +24,23 @@ type Props = {
 };
 
 export function SiteHeader({ withSafeArea = true }: Props) {
-  const router = useRouter();
   const pathname = usePathname();
   const insets = useSafeAreaInsets();
   const { isMobile } = useResponsive();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const go = (href: string) => {
-    setMenuOpen(false);
-    if (href.includes('#')) {
-      router.push(routes.home);
-      return;
-    }
-    router.push(href as '/');
-  };
+  const closeMenu = () => setMenuOpen(false);
 
   const isActive = (href: string) => {
-    if (href === routes.home) return pathname === '/' || pathname === '';
-    return pathname === href || pathname.startsWith(`${href}/`);
+    if (href === routes.home || href.startsWith(`${routes.home}#`)) {
+      return pathname === '/' || pathname === '';
+    }
+    const base = href.split('#')[0];
+    return pathname === base || pathname.startsWith(`${base}/`);
   };
+
+  const linkHref = (item: (typeof navItems)[number]): AppRoute =>
+    'isHash' in item && item.isHash ? routes.home : (item.href as AppRoute);
 
   return (
     <View
@@ -49,36 +49,34 @@ export function SiteHeader({ withSafeArea = true }: Props) {
         withSafeArea ? { paddingTop: insets.top } : undefined,
         Platform.OS === 'web' ? styles.stickyWeb : undefined,
       ]}
-      accessibilityRole="header"
     >
       <ContentContainer style={styles.inner}>
         <View style={styles.row}>
-          <Pressable
-            onPress={() => go(routes.home)}
+          <AppLink
+            href={routes.home}
             style={styles.brandBlock}
-            accessibilityRole="link"
             accessibilityLabel={`${suiteCopy.appName}. Ir al inicio`}
           >
             <Text style={styles.brand}>{suiteCopy.appName}</Text>
             {!isMobile ? <Text style={styles.tagline}>{suiteCopy.tagline}</Text> : null}
-          </Pressable>
+          </AppLink>
 
           {!isMobile ? (
             <View style={styles.nav}>
               {navItems.map((item) => (
-                <Pressable
+                <AppLink
                   key={item.label}
-                  onPress={() => go(item.href)}
+                  href={linkHref(item)}
                   style={styles.navItem}
-                  accessibilityRole="link"
-                  accessibilityState={{ selected: isActive(item.href) }}
+                  onPress={closeMenu}
+                  accessibilityLabel={item.label}
                 >
                   <Text
                     style={[styles.navLabel, isActive(item.href) && styles.navLabelActive]}
                   >
                     {item.label}
                   </Text>
-                </Pressable>
+                </AppLink>
               ))}
             </View>
           ) : (
@@ -96,18 +94,19 @@ export function SiteHeader({ withSafeArea = true }: Props) {
         {isMobile && menuOpen ? (
           <View style={styles.mobileMenu}>
             {navItems.map((item) => (
-              <Pressable
+              <AppLink
                 key={item.label}
-                onPress={() => go(item.href)}
+                href={linkHref(item)}
                 style={styles.mobileItem}
-                accessibilityRole="link"
+                onPress={closeMenu}
+                accessibilityLabel={item.label}
               >
                 <Text
                   style={[styles.mobileLabel, isActive(item.href) && styles.navLabelActive]}
                 >
                   {item.label}
                 </Text>
-              </Pressable>
+              </AppLink>
             ))}
           </View>
         ) : null}

@@ -3,12 +3,23 @@ import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { PageSeo } from '@/components/seo/PageSeo';
+import { Breadcrumbs, breadcrumbsToSeo } from '@/components/ui/Breadcrumbs';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
+import { Heading } from '@/components/ui/Heading';
 import { appConfig } from '@/config/appConfig';
+import { navCopy } from '@/constants/copy';
 import { seoPages } from '@/constants/seo';
+import { routes } from '@/navigation/routes';
 import { colors, spacing } from '@/theme';
 import { layout } from '@/theme/layout';
+
+const PAGE_TITLE = 'Contacto';
+
+const breadcrumbs = [
+  { label: navCopy.home, href: routes.home },
+  { label: PAGE_TITLE },
+];
 
 export function ContactScreen() {
   const email = appConfig.contactEmail.trim();
@@ -16,15 +27,16 @@ export function ContactScreen() {
 
   return (
     <>
-      <PageSeo page={seoPages.contact} />
+      <PageSeo page={seoPages.contact} breadcrumbs={breadcrumbsToSeo(breadcrumbs, routes.contact)} />
       <PageContainer
         header={<SiteHeader />}
         footer={<SiteFooter />}
         contentMaxWidth={layout.formMaxWidth}
       >
-        <Text style={styles.title} accessibilityRole="header">
-          Contacto
-        </Text>
+        <Breadcrumbs items={breadcrumbs} />
+        <Heading level={1} style={styles.title}>
+          {PAGE_TITLE}
+        </Heading>
         <Text style={styles.intro}>
           ¿Me alcanza? es una herramienta de simulación referencial. En esta versión no hay
           backend ni formulario de contacto con envío de datos.
@@ -41,7 +53,9 @@ export function ContactScreen() {
             </View>
           ) : (
             <View style={styles.block}>
-              <Text style={styles.soonTitle}>Próximamente</Text>
+              <Heading level={2} style={styles.soonTitle}>
+                Próximamente
+              </Heading>
               <Text style={styles.body}>
                 Aún no hay un canal de contacto público configurado. Cuando esté disponible,
                 aparecerá aquí (configura `contactEmail` en la app).
