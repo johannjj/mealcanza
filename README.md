@@ -90,6 +90,8 @@ npm run web:serve          # servir dist/ localmente
 npm run seo:check          # solo validar dist/
 ```
 
+Google Analytics 4 (solo web): variable `EXPO_PUBLIC_GA_MEASUREMENT_ID` en Amplify. Ver [ANALYTICS_PRIVACY.md](ANALYTICS_PRIVACY.md).
+
 Guía completa: [docs/DEPLOY_SEO.md](docs/DEPLOY_SEO.md) (Amplify, redirects 301, Search Console, caché).
 
 ## Probar en Expo Go (recomendado)

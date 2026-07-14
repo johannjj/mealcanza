@@ -37,8 +37,16 @@ const sections = [
     body: 'La función de compartir utiliza las herramientas nativas del dispositivo o navegador. Tú eliges con quién compartir el mensaje.',
   },
   {
-    title: 'Sin compartir con terceros',
-    body: 'En esta versión no compartimos información personal con terceros ni usamos publicidad personalizada.',
+    title: 'Analítica en la versión web',
+    body: 'En mealcanza.cl usamos Google Analytics 4 para estadísticas agregadas de navegación y uso (páginas visitadas y eventos como “cálculo iniciado”). No enviamos deliberadamente nombres, correos, teléfonos, RUT, valores financieros que ingresas ni resultados exactos de simulación. La IP puede tratarse de forma anonimizada según la configuración del servicio. Esto no implica anonimato absoluto frente a Google como proveedor. Más información: https://policies.google.com/privacy',
+  },
+  {
+    title: 'Aplicación móvil',
+    body: 'En Android (y futuras builds iOS) la app no carga Google Analytics en esta versión.',
+  },
+  {
+    title: 'Publicidad y consentimiento',
+    body: 'No usamos publicidad personalizada ni remarketing en esta versión. Si en el futuro se habilitan cookies no esenciales o anuncios, actualizaremos esta política y el mecanismo de consentimiento antes de activarlos.',
   },
   {
     title: 'Permisos',
@@ -50,11 +58,11 @@ const sections = [
   },
   {
     title: 'Almacenamiento local',
-    body: 'Puede generarse un identificador anónimo local en el dispositivo para uso futuro. En esta versión no se transmite a servidores externos. El historial de simulaciones, si existe, solo guarda parámetros y resultados de cálculo en el dispositivo.',
+    body: 'Puede generarse un identificador anónimo local en el dispositivo para uso futuro. En esta versión no se transmite a Google Analytics ni a otros servidores de medición. El historial de simulaciones, si existe, solo guarda parámetros y resultados de cálculo en el dispositivo.',
   },
   {
     title: 'Cambios futuros',
-    body: 'Si activamos backend, analytics o publicidad, actualizaremos esta política antes de recolectar o transmitir datos adicionales.',
+    body: 'Si activamos backend, más analítica o publicidad, actualizaremos esta política antes de recolectar o transmitir datos adicionales.',
   },
 ] as const;
 

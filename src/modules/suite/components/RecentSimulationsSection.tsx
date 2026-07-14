@@ -14,7 +14,9 @@ import {
   setIncomeRequiredDraft,
   setMortgageDraft,
 } from '@/services/simulationDraftStore';
+import { services } from '@/services/container';
 import type { SimulationHistoryEntry } from '@/types/simulationHistory';
+import type { CalculatorAnalyticsType } from '@/repositories/AnalyticsRepository';
 import { colors, spacing } from '@/theme';
 import { layout } from '@/theme/layout';
 
@@ -36,6 +38,9 @@ export function RecentSimulationsSection() {
 
   const openEntry = (entry: SimulationHistoryEntry) => {
     const p = entry.params;
+    const analyticsType = entry.type as CalculatorAnalyticsType;
+    void services.analyticsRepository.trackHistoryOpened?.(analyticsType);
+
     if (entry.type === 'mortgage') {
       setMortgageDraft({
         propertyValueUf: Number(p.propertyValueUf),

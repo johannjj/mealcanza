@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Keyboard, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Keyboard, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ToolPageLayout } from '@/components/layout/ToolPageLayout';
@@ -76,7 +76,6 @@ export function MortgageSimulatorScreen() {
     if (!startedRef.current) {
       startedRef.current = true;
       void services.analyticsRepository.trackCalculatorStarted?.('mortgage');
-      void services.analyticsRepository.trackPageView?.('mortgage');
     }
   }, []);
 
@@ -171,11 +170,10 @@ export function MortgageSimulatorScreen() {
       },
     });
 
-    await services.analyticsRepository.trackCalculatorCompleted?.('mortgage');
-    await services.analyticsRepository.track({
-      name: 'simulation_completed',
-      type: 'mortgage',
-    });
+    await services.analyticsRepository.trackCalculatorCompleted?.(
+      'mortgage',
+      scoreResult?.status,
+    );
   });
 
   const handleEditSimulation = () => {
@@ -193,7 +191,10 @@ export function MortgageSimulatorScreen() {
       propertyValueUf: result.propertyValueUf,
     });
     if (shared) {
-      await services.analyticsRepository.trackResultShared?.('mortgage');
+      await services.analyticsRepository.trackResultShared?.(
+        'mortgage',
+        Platform.OS === 'web' ? 'web' : 'native',
+      );
     }
   };
 

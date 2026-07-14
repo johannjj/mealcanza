@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Keyboard, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Keyboard, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ToolPageLayout } from '@/components/layout/ToolPageLayout';
@@ -74,7 +74,6 @@ export function IncomeRequiredScreen() {
     if (!startedRef.current) {
       startedRef.current = true;
       void services.analyticsRepository.trackCalculatorStarted?.('income-required');
-      void services.analyticsRepository.trackPageView?.('income-required');
     }
   }, []);
 
@@ -128,10 +127,6 @@ export function IncomeRequiredScreen() {
     });
 
     await services.analyticsRepository.trackCalculatorCompleted?.('income-required');
-    await services.analyticsRepository.track({
-      name: 'simulation_completed',
-      type: 'income-required',
-    });
   });
 
   const handleEdit = () => {
@@ -146,7 +141,12 @@ export function IncomeRequiredScreen() {
       requiredIncome: analysis.requiredIncome,
       propertyValueUf: analysis.propertyValueUf,
     });
-    if (shared) await services.analyticsRepository.trackResultShared?.('income-required');
+    if (shared) {
+      await services.analyticsRepository.trackResultShared?.(
+        'income-required',
+        Platform.OS === 'web' ? 'web' : 'native',
+      );
+    }
   };
 
   const isResult = phase === 'result' && analysis && submittedValues && uf;

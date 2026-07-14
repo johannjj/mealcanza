@@ -5,5 +5,6 @@ export type { UserRepository } from './UserRepository';
 export { LocalUserRepository } from './LocalUserRepository';
 export type { AnalyticsRepository, AnalyticsEvent } from './AnalyticsRepository';
 export { NoopAnalyticsRepository } from './NoopAnalyticsRepository';
+export { GoogleAnalyticsRepository } from './GoogleAnalyticsRepository';
 export type { SponsorRepository } from './SponsorRepository';
 export { StaticSponsorRepository } from './StaticSponsorRepository';

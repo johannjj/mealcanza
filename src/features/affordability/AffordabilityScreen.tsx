@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Keyboard, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Keyboard, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ToolPageLayout } from '@/components/layout/ToolPageLayout';
@@ -58,7 +58,6 @@ export function AffordabilityScreen() {
     if (!startedRef.current) {
       startedRef.current = true;
       void services.analyticsRepository.trackCalculatorStarted?.('affordability');
-      void services.analyticsRepository.trackPageView?.('affordability');
     }
   }, []);
 
@@ -81,10 +80,6 @@ export function AffordabilityScreen() {
     });
 
     await services.analyticsRepository.trackCalculatorCompleted?.('affordability');
-    await services.analyticsRepository.track({
-      name: 'simulation_completed',
-      type: 'affordability',
-    });
   });
 
   const handleEdit = () => {
@@ -94,7 +89,12 @@ export function AffordabilityScreen() {
 
   const handleShare = async () => {
     const shared = await shareAffordabilityResult();
-    if (shared) await services.analyticsRepository.trackResultShared?.('affordability');
+    if (shared) {
+      await services.analyticsRepository.trackResultShared?.(
+        'affordability',
+        Platform.OS === 'web' ? 'web' : 'native',
+      );
+    }
   };
 
   const isResult = phase === 'result' && result && submittedValues;

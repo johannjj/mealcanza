@@ -9,8 +9,18 @@ La web de **¿Me alcanza?** se exporta como sitio estático con Expo Router (`we
 | `SITE_URL` | `https://mealcanza.cl` | Canonical, sitemap, robots, OG |
 | `EXPO_PUBLIC_SITE_URL` | igual que `SITE_URL` | Disponible en el cliente Expo |
 | `EXPO_PUBLIC_GOOGLE_SITE_VERIFICATION` | (opcional) | Meta de verificación Search Console |
+| `EXPO_PUBLIC_GA_MEASUREMENT_ID` | `G-FT4PQW3ZYW` | Google Analytics 4 (solo web) |
+| `EXPO_PUBLIC_GA_DEBUG` | `true` (opcional) | Log de eventos GA en consola |
 
-Centralizado en `src/config/site.ts`. Cambiar el dominio = actualizar la variable en Amplify (o el default en ese archivo).
+Centralizado en `src/config/site.ts` y `src/config/analytics.ts`.
+
+### Google Analytics en Amplify
+
+1. Amplify → aplicación mealcanza → **Variables de entorno**
+2. Agregar `EXPO_PUBLIC_GA_MEASUREMENT_ID` = `G-FT4PQW3ZYW`
+3. Redeploy
+
+Detalle: [ANALYTICS_PRIVACY.md](../ANALYTICS_PRIVACY.md).
 
 ## Build local
 

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Keyboard, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Keyboard, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ToolPageLayout } from '@/components/layout/ToolPageLayout';
@@ -51,7 +51,6 @@ export function RefinanceSimulatorScreen() {
     if (!startedRef.current) {
       startedRef.current = true;
       void services.analyticsRepository.trackCalculatorStarted?.('refinance');
-      void services.analyticsRepository.trackPageView?.('refinance');
     }
   }, []);
 
@@ -81,10 +80,6 @@ export function RefinanceSimulatorScreen() {
     });
 
     await services.analyticsRepository.trackCalculatorCompleted?.('refinance');
-    await services.analyticsRepository.track({
-      name: 'simulation_completed',
-      type: 'refinance',
-    });
   });
 
   const handleEdit = () => {
@@ -96,7 +91,12 @@ export function RefinanceSimulatorScreen() {
   const handleShare = async () => {
     if (!result) return;
     const shared = await shareRefinanceResult({ monthlySavings: result.monthlySavings });
-    if (shared) await services.analyticsRepository.trackResultShared?.('refinance');
+    if (shared) {
+      await services.analyticsRepository.trackResultShared?.(
+        'refinance',
+        Platform.OS === 'web' ? 'web' : 'native',
+      );
+    }
   };
 
   const isResult = phase === 'result' && result && submittedValues;

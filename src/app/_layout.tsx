@@ -6,6 +6,7 @@ import {
   SafeAreaProvider,
   initialWindowMetrics,
 } from 'react-native-safe-area-context';
+import { AnalyticsRouteTracker } from '@/components/analytics/AnalyticsRouteTracker';
 import { HeaderBackButton } from '@/navigation/HeaderBackButton';
 import { services } from '@/services/container';
 import { colors } from '@/theme';
@@ -26,6 +27,7 @@ export default function RootLayout() {
 
   return (
     <SafeAreaProvider initialMetrics={ssrSafeAreaMetrics}>
+      <AnalyticsRouteTracker />
       <StatusBar style="dark" />
       <Stack
         screenOptions={{
