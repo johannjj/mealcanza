@@ -62,11 +62,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     width: '100%',
-    alignItems: 'stretch',
   },
   cell: {
     flexGrow: 1,
     flexShrink: 1,
-    alignSelf: 'stretch',
   },
 });

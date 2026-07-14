@@ -9,7 +9,6 @@ import {
 import { HeaderBackButton } from '@/navigation/HeaderBackButton';
 import { services } from '@/services/container';
 import { colors } from '@/theme';
-import { setupExpoRouterKeyCleaner } from '@/utils/cleanupExpoRouterKey';
 
 /**
  * Métricas iniciales para SSR / export estático web.
@@ -23,10 +22,6 @@ const ssrSafeAreaMetrics = initialWindowMetrics ?? {
 export default function RootLayout() {
   useEffect(() => {
     void services.userRepository.getAnonymousUserId();
-  }, []);
-
-  useEffect(() => {
-    return setupExpoRouterKeyCleaner();
   }, []);
 
   return (

@@ -23,7 +23,7 @@ export function SectionHeader({ title, subtitle, accessibilityLabel }: Props) {
 const styles = StyleSheet.create({
   wrap: {
     gap: spacing.xs,
-    marginBottom: spacing.sm,
+    marginBottom: spacing.xs,
   },
   title: {
     fontSize: 20,

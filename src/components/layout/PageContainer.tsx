@@ -37,7 +37,6 @@ export function PageContainer({
         ref={scrollRef}
         contentContainerStyle={[
           styles.scroll,
-          header ? styles.scrollWithHeader : undefined,
           safeAreaTop && !header ? { paddingTop: spacing.md + insets.top } : undefined,
         ]}
         keyboardShouldPersistTaps="handled"
@@ -65,9 +64,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingBottom: spacing.xl,
     flexGrow: 1,
-  },
-  scrollWithHeader: {
-    paddingTop: spacing.lg,
   },
   footerWrap: {
     width: '100%',

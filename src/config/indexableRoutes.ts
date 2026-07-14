@@ -2,7 +2,11 @@ import { routes } from '@/navigation/routes';
 
 /**
  * Rutas públicas indexables (canónicas).
- * Fuente única para sitemap, validación SEO y metadata.
+ * El sitemap se genera automáticamente desde `src/app` + `scripts/seo.config.mjs`.
+ * Mantén esta lista alineada con las rutas canónicas ES (no legacy EN).
+ *
+ * @see scripts/seo.config.mjs
+ * @see npm run seo:generate
  */
 export type IndexableRoute = {
   path: string;

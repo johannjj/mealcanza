@@ -13,15 +13,13 @@ export function UseCaseCard({ useCase, onPress }: Props) {
   return (
     <Pressable
       onPress={onPress}
-      style={({ pressed }) => [styles.pressable, pressed && styles.pressed]}
+      style={({ pressed }) => [pressed && styles.pressed]}
       accessibilityRole="button"
       accessibilityLabel={`${useCase.title}. ${useCase.actionLabel}`}
     >
       <Card style={styles.card}>
-        <View style={styles.body}>
-          <Text style={styles.title}>{useCase.title}</Text>
-          <Text style={styles.description}>{useCase.description}</Text>
-        </View>
+        <Text style={styles.title}>{useCase.title}</Text>
+        <Text style={styles.description}>{useCase.description}</Text>
         <View style={styles.actionRow}>
           <Text style={styles.action}>{useCase.actionLabel}</Text>
           <Text style={styles.chevron}>›</Text>
@@ -32,22 +30,13 @@ export function UseCaseCard({ useCase, onPress }: Props) {
 }
 
 const styles = StyleSheet.create({
-  pressable: {
-    flex: 1,
-    alignSelf: 'stretch',
-  },
   pressed: {
     opacity: 0.92,
   },
   card: {
-    flex: 1,
     gap: spacing.sm,
     minHeight: layout.minTouchTarget * 2.5,
     justifyContent: 'space-between',
-  },
-  body: {
-    gap: spacing.sm,
-    flexGrow: 1,
   },
   title: {
     fontSize: 16,
@@ -59,6 +48,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.mutedText,
     lineHeight: 20,
+    flex: 1,
   },
   actionRow: {
     flexDirection: 'row',
