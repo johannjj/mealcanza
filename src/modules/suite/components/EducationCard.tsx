@@ -14,7 +14,7 @@ export function EducationCard({ article, onPress }: Props) {
   return (
     <Pressable
       onPress={onPress}
-      style={({ pressed }) => [pressed && styles.pressed]}
+      style={({ pressed }) => [styles.pressable, pressed && styles.pressed]}
       accessibilityRole="link"
       accessibilityLabel={article.title}
     >
@@ -28,12 +28,18 @@ export function EducationCard({ article, onPress }: Props) {
 }
 
 const styles = StyleSheet.create({
+  pressable: {
+    flex: 1,
+    alignSelf: 'stretch',
+  },
   pressed: {
     opacity: 0.92,
   },
   card: {
+    flex: 1,
     gap: spacing.sm,
     minHeight: layout.minTouchTarget * 2.2,
+    justifyContent: 'space-between',
   },
   title: {
     fontSize: 16,
@@ -45,7 +51,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.mutedText,
     lineHeight: 20,
-    flex: 1,
+    flexGrow: 1,
   },
   cta: {
     fontSize: 14,

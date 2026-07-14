@@ -21,6 +21,7 @@ export function ToolAccessButton({ icon, label, description, onPress }: Props) {
       accessibilityLabel={description ? `${label}. ${description}` : label}
       style={(state) => [
         styles.button,
+        styles.fill,
         state.pressed && styles.pressed,
         Platform.OS === 'web' && isHovered(state) ? styles.hovered : null,
       ]}
@@ -40,6 +41,10 @@ export function ToolAccessButton({ icon, label, description, onPress }: Props) {
 }
 
 const styles = StyleSheet.create({
+  fill: {
+    flex: 1,
+    alignSelf: 'stretch',
+  },
   button: {
     width: '100%',
     flexDirection: 'row',
@@ -66,6 +71,7 @@ const styles = StyleSheet.create({
   textBlock: {
     flex: 1,
     gap: 2,
+    justifyContent: 'center',
   },
   label: {
     fontSize: 16,

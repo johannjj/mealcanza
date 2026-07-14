@@ -45,7 +45,10 @@ export function ResponsiveGrid({
       {items.map((child, index) => (
         <View
           key={index}
-          style={[styles.cell, { flexBasis: `${basisPercent}%`, minWidth: minColumnWidth }]}
+          style={[
+            styles.cell,
+            { flexBasis: `${basisPercent}%`, minWidth: minColumnWidth },
+          ]}
         >
           {child}
         </View>
@@ -62,9 +65,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     width: '100%',
+    alignItems: 'stretch',
   },
   cell: {
     flexGrow: 1,
     flexShrink: 1,
+    // Hijos (Pressable/Card) rellenan la altura de la fila
+    display: 'flex',
   },
 });
