@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import { usePathname } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AppLink } from '@/components/ui/AppLink';
@@ -10,6 +10,8 @@ import { routes } from '@/navigation/routes';
 import type { AppRoute } from '@/navigation/routes';
 import { colors, radius, spacing } from '@/theme';
 import { layout } from '@/theme/layout';
+
+const headerLogo = require('../../../assets/brand/mealcanza2.png');
 
 const navItems = [
   { label: navCopy.home, href: routes.home },
@@ -57,8 +59,12 @@ export function SiteHeader({ withSafeArea = true }: Props) {
             style={styles.brandBlock}
             accessibilityLabel={`${suiteCopy.appName}. Ir al inicio`}
           >
-            <Text style={styles.brand}>{suiteCopy.appName}</Text>
-            {!isMobile ? <Text style={styles.tagline}>{suiteCopy.tagline}</Text> : null}
+            <Image
+              source={headerLogo}
+              style={[styles.brandLogo, isMobile && styles.brandLogoMobile]}
+              resizeMode="contain"
+              accessibilityIgnoresInvertColors
+            />
           </AppLink>
 
           {!isMobile ? (
@@ -129,27 +135,26 @@ const styles = StyleSheet.create({
   },
   inner: {
     gap: 0,
-    paddingVertical: spacing.sm,
+    paddingVertical: spacing.md,
   },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     gap: spacing.md,
-    minHeight: layout.minTouchTarget,
+    minHeight: layout.minTouchTarget + 8,
   },
   brandBlock: {
     flexShrink: 1,
-    gap: 2,
+    justifyContent: 'center',
   },
-  brand: {
-    fontSize: 18,
-    fontWeight: '700',
-    color: colors.primary,
+  brandLogo: {
+    width: 280,
+    height: 60,
   },
-  tagline: {
-    fontSize: 12,
-    color: colors.mutedText,
+  brandLogoMobile: {
+    width: 210,
+    height: 46,
   },
   nav: {
     flexDirection: 'row',

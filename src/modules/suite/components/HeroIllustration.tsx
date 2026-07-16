@@ -1,8 +1,13 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { colors, radius, spacing } from '@/theme';
 import { useResponsive } from '@/hooks/useResponsive';
 
-/** Ilustración abstracta vivienda/finanzas — sin fotos genéricas. */
+const heroLogo = require('../../../../assets/brand/mealcanza.png');
+
+/**
+ * Hero visual: fondo azul claro + logo central + acentos UF y lupa
+ * (misma composición que la ilustración original de la casa).
+ */
 export function HeroIllustration() {
   const { isMobile } = useResponsive();
 
@@ -12,22 +17,25 @@ export function HeroIllustration() {
     <View
       style={styles.canvas}
       accessibilityRole="image"
-      accessibilityLabel="Ilustración de vivienda y cálculo financiero"
+      accessibilityLabel="Logo ¿Me alcanza?"
     >
-      <View style={styles.house}>
-        <View style={styles.roof} />
-        <View style={styles.body}>
-          <View style={styles.door} />
-          <View style={styles.window} />
-        </View>
+      <View style={styles.logoClip}>
+        <Image
+          source={heroLogo}
+          style={styles.logo}
+          resizeMode="cover"
+          accessibilityIgnoresInvertColors
+        />
       </View>
-      <View style={styles.cardFloat}>
+
+      <View style={styles.cardFloat} accessibilityElementsHidden>
         <Text style={styles.cardLabel}>UF</Text>
         <View style={styles.barTall} />
         <View style={styles.barMid} />
         <View style={styles.barShort} />
       </View>
-      <View style={styles.key}>
+
+      <View style={styles.key} accessibilityElementsHidden>
         <View style={styles.keyHead} />
         <View style={styles.keyShaft} />
       </View>
@@ -38,7 +46,7 @@ export function HeroIllustration() {
 const styles = StyleSheet.create({
   canvas: {
     flex: 1,
-    minHeight: 260,
+    minHeight: 280,
     backgroundColor: '#E8F1F4',
     borderRadius: radius.lg,
     borderWidth: 1,
@@ -47,49 +55,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     overflow: 'hidden',
     position: 'relative',
+    padding: spacing.lg,
   },
-  house: {
+  logoClip: {
+    width: 200,
+    height: 200,
+    borderRadius: 100,
+    overflow: 'hidden',
+    backgroundColor: colors.white,
     alignItems: 'center',
+    justifyContent: 'center',
     zIndex: 1,
   },
-  roof: {
-    width: 0,
-    height: 0,
-    borderLeftWidth: 70,
-    borderRightWidth: 70,
-    borderBottomWidth: 48,
-    borderLeftColor: 'transparent',
-    borderRightColor: 'transparent',
-    borderBottomColor: colors.primary,
-  },
-  body: {
-    width: 120,
-    height: 90,
-    backgroundColor: colors.white,
-    borderWidth: 2,
-    borderColor: colors.primary,
-    borderBottomLeftRadius: radius.sm,
-    borderBottomRightRadius: radius.sm,
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    justifyContent: 'space-around',
-    paddingBottom: spacing.sm,
-  },
-  door: {
-    width: 28,
-    height: 44,
-    backgroundColor: colors.secondary,
-    borderTopLeftRadius: 4,
-    borderTopRightRadius: 4,
-  },
-  window: {
-    width: 28,
-    height: 28,
-    backgroundColor: '#D6EAF0',
-    borderWidth: 2,
-    borderColor: colors.primary,
-    borderRadius: 4,
-    marginBottom: spacing.md,
+  logo: {
+    width: 200,
+    height: 200,
   },
   cardFloat: {
     position: 'absolute',
@@ -103,6 +83,7 @@ const styles = StyleSheet.create({
     padding: spacing.sm,
     gap: 4,
     alignItems: 'flex-start',
+    zIndex: 2,
   },
   cardLabel: {
     fontSize: 11,
@@ -134,6 +115,7 @@ const styles = StyleSheet.create({
     bottom: spacing.lg,
     flexDirection: 'row',
     alignItems: 'center',
+    zIndex: 2,
   },
   keyHead: {
     width: 22,
