@@ -32,6 +32,11 @@ function toGaResultStatus(
 /**
  * AnalyticsRepository → GA4 (solo eventos permitidos, sin datos financieros).
  * Los page_view de ruta los gestiona AnalyticsRouteTracker; trackPageView es no-op.
+ *
+ * Equivalencia con nombres de medición solicitados (no se duplican):
+ * - calculation_started → calculator_started
+ * - calculation_completed → calculator_completed
+ * - result_shared → result_shared
  */
 export class GoogleAnalyticsRepository implements AnalyticsRepository {
   async track(event: AnalyticsEvent): Promise<void> {

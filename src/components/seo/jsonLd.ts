@@ -1,5 +1,17 @@
 import { SITE_URL } from '@/config/site';
 import { absoluteUrl, type PageSeoConfig } from '@/constants/seo';
+import { routes } from '@/navigation/routes';
+
+const BRAND_NAME = 'Me Alcanza';
+const BRAND_ALTERNATE_NAME = '¿Me alcanza?';
+
+/** Herramientas reales del sitio. El nombre visible no promete un resultado exacto. */
+const WEB_APPLICATIONS: Record<string, string> = {
+  [routes.mortgage]: 'Simulador de crédito hipotecario',
+  [routes.refinance]: 'Simulador de refinanciamiento hipotecario',
+  [routes.affordability]: 'Calculadora de capacidad de pago',
+  [routes.incomeRequired]: 'Calculadora de renta necesaria para vivienda',
+};
 
 type BreadcrumbItem = { name: string; path: string };
 type FaqItem = { question: string; answer: string };
@@ -20,10 +32,44 @@ export function buildPageJsonLd(
     blocks.push({
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      name: '¿Me alcanza?',
+      name: BRAND_NAME,
+      alternateName: BRAND_ALTERNATE_NAME,
       url: `${SITE_URL}/`,
       description: page.description,
       inLanguage: 'es-CL',
+      publisher: {
+        '@type': 'Organization',
+        name: BRAND_NAME,
+        alternateName: BRAND_ALTERNATE_NAME,
+        url: `${SITE_URL}/`,
+      },
+    });
+    blocks.push({
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: BRAND_NAME,
+      alternateName: BRAND_ALTERNATE_NAME,
+      url: `${SITE_URL}/`,
+    });
+  }
+
+  const applicationName = WEB_APPLICATIONS[page.path];
+  if (applicationName && !page.noIndex) {
+    blocks.push({
+      '@context': 'https://schema.org',
+      '@type': 'WebApplication',
+      name: applicationName,
+      url,
+      description: page.description,
+      applicationCategory: 'FinanceApplication',
+      operatingSystem: 'Web',
+      inLanguage: 'es-CL',
+      isAccessibleForFree: true,
+      provider: {
+        '@type': 'Organization',
+        name: BRAND_NAME,
+        url: `${SITE_URL}/`,
+      },
     });
   }
 
@@ -31,7 +77,7 @@ export function buildPageJsonLd(
     blocks.push({
       '@context': 'https://schema.org',
       '@type': 'Article',
-      headline: page.title.replace(/\s*\|\s*¿Me alcanza\?$/, ''),
+      headline: page.title.replace(/\s*\|\s*(?:¿Me alcanza\?|Me Alcanza)$/, ''),
       description: page.description,
       datePublished: page.datePublished,
       dateModified: page.dateModified ?? page.datePublished,
@@ -42,7 +88,8 @@ export function buildPageJsonLd(
       },
       publisher: {
         '@type': 'Organization',
-        name: '¿Me alcanza?',
+        name: BRAND_NAME,
+        alternateName: BRAND_ALTERNATE_NAME,
         url: `${SITE_URL}/`,
       },
     });

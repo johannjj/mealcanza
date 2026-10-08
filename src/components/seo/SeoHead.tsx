@@ -60,15 +60,17 @@ export function SeoHead({
       <meta property="og:description" content={description} />
       <meta property="og:url" content={canonical} />
       <meta property="og:image" content={image} />
+      <meta property="og:image:alt" content="Me Alcanza, calculadoras financieras para Chile" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:site_name" content="¿Me alcanza?" />
+      <meta property="og:site_name" content="Me Alcanza" />
       <meta property="og:locale" content="es_CL" />
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
+      <meta name="twitter:image:alt" content="Me Alcanza, calculadoras financieras para Chile" />
 
       {GOOGLE_SITE_VERIFICATION ? (
         <meta name="google-site-verification" content={GOOGLE_SITE_VERIFICATION} />
@@ -76,16 +78,13 @@ export function SeoHead({
 
       {jsonLdPayload
         ? jsonLdPayload.map((block, index) => (
-            <script
-              key={`jsonld-${index}`}
-              type="application/ld+json"
-              // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(block) }}
-            />
+            <script key={`jsonld-${index}`} type="application/ld+json">
+              {JSON.stringify(block)}
+            </script>
           ))
         : null}
 
-      <meta name="application-name" content="¿Me alcanza?" />
+      <meta name="application-name" content="Me Alcanza" />
       <link rel="alternate" hrefLang="es-CL" href={canonical} />
     </Head>
   );

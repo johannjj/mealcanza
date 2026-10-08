@@ -3,6 +3,16 @@ import type { Faq } from '@/components/results/CalculatorExplainer';
 
 export const mortgageFaqs: Faq[] = [
   {
+    question: '¿Qué es el dividendo hipotecario?',
+    answer:
+      'Es la cuota mensual del crédito: una parte amortiza capital y otra paga interés. En Chile suele pactarse en UF y cobrarse en pesos. Esta estimación no incluye seguros ni gastos operacionales.',
+  },
+  {
+    question: '¿Cómo influye la UF en el dividendo?',
+    answer:
+      'Si el dividendo está en UF, una UF más alta significa más pesos al mes, aunque el crédito en UF no cambie. El simulador convierte el resultado con la UF de referencia del día.',
+  },
+  {
     question: '¿El dividendo incluye seguros?',
     answer:
       'No. El resultado es un dividendo referencial del crédito (sistema francés). Seguros de desgravamen, incendio u otros gastos operacionales no están incluidos.',
@@ -89,7 +99,8 @@ export const affordabilityFaqs: Faq[] = [
 ];
 
 export const mortgageRelatedLinks = [
-  { label: '¿Qué es la UF?', href: routes.learnUf },
+  { label: '¿Qué es la UF en Chile?', href: routes.learnUf },
+  { label: 'Refinanciar crédito hipotecario', href: routes.refinance },
   { label: 'Carga financiera del dividendo', href: routes.learnLoad },
   { label: '¿Cuánto debería ganar?', href: routes.incomeRequired },
 ];
@@ -114,21 +125,25 @@ export const affordabilityRelatedLinks = [
 type ExplainerSection = { heading: string; body: string };
 
 export const mortgageExplainer = {
-  title: 'Cómo funciona',
+  title: 'Cómo funciona el simulador',
   intro:
-    'El cálculo usa el sistema francés: cuotas fijas a lo largo del plazo, con una tasa anual convertida a mensual.',
+    'El cálculo estima un dividendo con el sistema francés: cuotas fijas durante el plazo, con una tasa anual convertida a mensual. No es una cotización de un banco.',
   sections: [
     {
-      heading: 'Cómo se calcula el dividendo',
-      body: 'Se toma el monto a financiar (propiedad menos pie), se aplica la tasa y el plazo, y se obtiene una cuota mensual estimada. Luego se expresa en pesos con la UF de referencia.',
+      heading: 'Qué es el dividendo hipotecario',
+      body: 'Es la cuota mensual del crédito, con capital e interés. En Chile casi siempre se pacta en UF y se paga en pesos según la UF del día. Este resultado no suma seguros de desgravamen, incendio ni gastos operacionales.',
     },
     {
-      heading: 'Qué porcentaje del sueldo debería representar',
-      body: 'Una referencia frecuente es mantener el dividendo cerca del 25-30% de la renta líquida. Sobre 35% el presupuesto suele quedar más ajustado.',
+      heading: 'Cómo influye la UF',
+      body: 'El monto a financiar queda en UF: valor de la propiedad menos el pie. La tasa y el plazo definen el dividendo en UF. Al pasarlo a pesos se usa la UF de referencia: si la UF sube, pagas más pesos por el mismo dividendo, sin haber pedido un crédito mayor.',
     },
     {
-      heading: 'Diferencias entre 20, 25 y 30 años',
-      body: 'A mayor plazo, la cuota baja pero pagas más intereses en total. A menor plazo, la cuota sube y el costo financiero suele bajar.',
+      heading: 'Cómo afectan la tasa y el plazo',
+      body: 'Una tasa anual más baja reduce la cuota y el interés total. Un plazo más largo, como 25 o 30 años, suele bajar el dividendo mensual, pero aumentas el interés pagado en todo el crédito. Un plazo más corto sube la cuota y suele reducir ese costo financiero.',
+    },
+    {
+      heading: 'Qué porcentaje del sueldo revisar',
+      body: 'Una referencia frecuente en Chile es que el dividendo ronde el 25% al 30% de la renta líquida. Sobre 35% el presupuesto suele quedar más ajustado. No es una regla bancaria: cada institución evalúa historial, estabilidad y otras deudas.',
     },
   ] as ExplainerSection[],
   whatItCalculates:

@@ -66,7 +66,7 @@ export const housingUseCases: readonly UseCase[] = [
 export const educationArticles: readonly EducationArticle[] = [
   {
     id: 'uf',
-    title: '¿Qué es la UF y por qué cambia?',
+    title: '¿Qué es la UF en Chile?',
     description: 'Entiende cómo afecta el valor de una propiedad y el dividendo.',
     route: routes.learnUf,
   },
@@ -78,7 +78,7 @@ export const educationArticles: readonly EducationArticle[] = [
   },
   {
     id: 'refinance',
-    title: '¿Cuándo conviene refinanciar?',
+    title: '¿Cuándo conviene refinanciar un crédito hipotecario?',
     description: 'Aprende a comparar ahorro mensual, costos y plazo de recuperación.',
     route: routes.learnRefinance,
   },

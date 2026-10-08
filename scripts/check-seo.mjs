@@ -144,6 +144,14 @@ for (const route of publicRoutes) {
   if (!title) fail(`${route}: sin <title>`);
   if (!description) fail(`${route}: sin meta description`);
   if (!canonical) fail(`${route}: sin canonical`);
+  if (title && title.length > 60) {
+    warn(`${route}: title de ${title.length} caracteres (recomendado ≤ 60): "${title}"`);
+  }
+  if (description && description.length > 160) {
+    warn(
+      `${route}: description de ${description.length} caracteres (recomendado ≤ 160)`,
+    );
+  }
 
   if (title) {
     if (titles.has(title)) fail(`Title duplicado: "${title}" (${titles.get(title)} y ${route})`);

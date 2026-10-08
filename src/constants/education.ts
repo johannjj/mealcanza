@@ -25,7 +25,7 @@ export type EducationPageContent = {
 export const educationPages = {
   'que-es-la-uf': {
     slug: 'que-es-la-uf',
-    title: '¿Qué es la UF y por qué cambia?',
+    title: '¿Qué es la UF en Chile?',
     introduction:
       'La Unidad de Fomento (UF) es una unidad de cuenta usada en Chile para expresar valores que se ajustan con la inflación. Muchos créditos hipotecarios y precios de vivienda se cotizan en UF.',
     explanation:
@@ -42,7 +42,7 @@ export const educationPages = {
       'Si ves un aviso inmobiliario en UF, no es solo una convención: el precio en pesos variará con el índice. Al comparar ofertas, traduce ambas a CLP con la misma fecha de UF para decidir con números comparables.',
     sources:
       'Referencia general: Banco Central de Chile (serie UF diaria) y mindicador.cl para el valor publicado. Esta guía resume conceptos habituales en el mercado hipotecario chileno; no sustituye la letra de tu contrato.',
-    updatedAt: 'Actualizado: julio 2026',
+    updatedAt: 'Actualizado: octubre 2026',
     relatedLinks: [
       { label: 'Simular crédito hipotecario', href: routes.mortgage },
       { label: '¿Cuánto debería ganar?', href: routes.incomeRequired },
@@ -83,7 +83,7 @@ export const educationPages = {
   },
   'cuando-conviene-refinanciar': {
     slug: 'cuando-conviene-refinanciar',
-    title: '¿Cuándo conviene refinanciar?',
+    title: '¿Cuándo conviene refinanciar un crédito hipotecario?',
     introduction:
       'Refinanciar significa reemplazar tu crédito actual por uno nuevo, generalmente buscando una tasa más baja o una cuota más cómoda. No siempre conviene: hay costos y plazos que hay que comparar.',
     explanation:
@@ -100,7 +100,7 @@ export const educationPages = {
       'La decisión suele ser más favorable cuando las tasas de mercado bajaron de forma relevante respecto a tu crédito original, o cuando tu perfil mejoró y accedes a mejores condiciones. Si la diferencia es marginal, los costos de tramitación pueden comerse el beneficio.',
     sources:
       'Resumen educativo según prácticas habituales de refinanciamiento hipotecario en Chile. Valida costos, tasas y plazos con tu banco o asesor antes de firmar.',
-    updatedAt: 'Actualizado: julio 2026',
+    updatedAt: 'Actualizado: octubre 2026',
     relatedLinks: [
       { label: 'Comparar refinanciamiento', href: routes.refinance },
       { label: 'Simular crédito', href: routes.mortgage },

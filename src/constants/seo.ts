@@ -30,111 +30,111 @@ export function absoluteImageUrl(imagePath = DEFAULT_OG_IMAGE_PATH): string {
 
 export const seoPages = {
   home: {
-    title: '¿Me alcanza? Calculadoras financieras para Chile',
+    title: 'Calculadoras financieras para Chile | Me Alcanza',
     description:
-      'Calcula dividendos hipotecarios, refinanciamiento, capacidad de pago y la renta necesaria para comprar vivienda usando la UF actual.',
+      'Simula un crédito hipotecario en Chile: dividendo, refinanciamiento, capacidad de pago y renta necesaria, con la UF del día. Gratis y referencial.',
     path: routes.home,
     type: 'website',
   },
   vivienda: {
-    title: 'Calculadoras para comprar vivienda en Chile | ¿Me alcanza?',
+    title: 'Calculadoras para comprar vivienda en Chile | Me Alcanza',
     description:
-      'Evalúa dividendos, pie, capacidad de pago, refinanciamiento y renta necesaria antes de comprar una propiedad en Chile.',
+      'Herramientas para estimar dividendo, pie, capacidad de pago, refinanciamiento y renta necesaria antes de comprar una propiedad en Chile.',
     path: routes.vivienda,
     type: 'website',
   },
   mortgage: {
-    title: 'Simulador de crédito hipotecario en Chile | ¿Me alcanza?',
+    title: 'Simulador de Crédito Hipotecario Chile | Me Alcanza',
     description:
-      'Calcula un dividendo hipotecario estimado usando valor de propiedad en UF, pie, tasa, plazo y renta líquida.',
+      'Simula tu crédito hipotecario en Chile. Estima el dividendo mensual, el pie, la tasa y el costo total con la UF del día. Gratis y referencial.',
     path: routes.mortgage,
     type: 'website',
   },
   refinance: {
-    title: 'Simulador de refinanciamiento hipotecario | ¿Me alcanza?',
+    title: 'Refinanciar crédito hipotecario en Chile | Me Alcanza',
     description:
-      'Compara tu dividendo actual con una nueva tasa y estima ahorro mensual, costo de refinanciamiento y plazo de recuperación.',
+      'Compara tu crédito hipotecario con una nueva tasa. Estima el ahorro mensual y en cuántos meses recuperarías el costo de refinanciar.',
     path: routes.refinance,
     type: 'website',
   },
   affordability: {
-    title: 'Calculadora de capacidad de pago para vivienda | ¿Me alcanza?',
+    title: 'Calculadora de capacidad de pago en Chile | Me Alcanza',
     description:
-      'Estima cuánto podrías destinar mensualmente a vivienda considerando renta, créditos y gastos fijos.',
+      'Estima cuánto podrías destinar al mes a una vivienda en Chile según tu renta líquida, créditos y gastos fijos. Resultado referencial.',
     path: routes.affordability,
     type: 'website',
   },
   incomeRequired: {
-    title: '¿Cuánto debo ganar para comprar una propiedad? | ¿Me alcanza?',
+    title: '¿Cuánto debo ganar para comprar vivienda? | Me Alcanza',
     description:
-      'Calcula qué renta líquida necesitarías para comprar una propiedad según su valor en UF, pie, tasa y plazo.',
+      'Calcula la renta líquida estimada para un crédito hipotecario según valor en UF, pie, tasa, plazo y el porcentaje de carga que elijas.',
     path: routes.incomeRequired,
     type: 'website',
   },
   learn: {
-    title: 'Guías para comprar vivienda y entender la UF | ¿Me alcanza?',
+    title: 'Guías de UF y crédito hipotecario | Me Alcanza',
     description:
-      'Aprende qué es la UF, cómo calcular tu carga financiera y cuándo podría convenir refinanciar un crédito hipotecario.',
+      'Aprende qué es la UF, cómo leer la carga financiera del dividendo y cuándo podría convenir refinanciar un crédito hipotecario en Chile.',
     path: routes.learn,
     type: 'website',
   },
   learnUf: {
-    title: '¿Qué es la UF y por qué cambia? | ¿Me alcanza?',
+    title: '¿Qué es la UF en Chile? Significado | Me Alcanza',
     description:
-      'Explicación clara de la Unidad de Fomento en Chile, cómo afecta el dividendo en pesos y un ejemplo numérico simple.',
+      'Qué es la UF y qué significa en un crédito hipotecario. Por qué cambia el valor en pesos y cómo afecta el dividendo, con un ejemplo simple.',
     path: routes.learnUf,
     type: 'article',
     datePublished: '2025-06-01',
-    dateModified: '2026-07-10',
+    dateModified: '2026-10-07',
   },
   learnLoad: {
-    title: 'Carga financiera del dividendo: 25%, 30% o 35% | ¿Me alcanza?',
+    title: 'Carga financiera del dividendo hipotecario | Me Alcanza',
     description:
-      'Cómo estimar qué porcentaje de tu renta líquida destinar al dividendo y qué implica un escenario cómodo, ajustado o riesgoso.',
+      'Qué porcentaje de la renta líquida suele destinarse al dividendo en Chile y qué implica un escenario cómodo, ajustado o más riesgoso.',
     path: routes.learnLoad,
     type: 'article',
     datePublished: '2025-06-01',
     dateModified: '2026-07-10',
   },
   learnRefinance: {
-    title: '¿Cuándo conviene refinanciar un crédito hipotecario? | ¿Me alcanza?',
+    title: '¿Cuándo refinanciar un crédito hipotecario? | Me Alcanza',
     description:
-      'Cómo comparar ahorro mensual, costos de refinanciamiento y meses de recuperación antes de cambiar tu hipoteca.',
+      'Cuándo conviene refinanciar un crédito hipotecario en Chile: ahorro mensual, costos de trámite y meses para recuperar el gasto.',
     path: routes.learnRefinance,
     type: 'article',
     datePublished: '2025-06-01',
-    dateModified: '2026-07-10',
+    dateModified: '2026-10-07',
   },
   privacy: {
-    title: 'Política de privacidad | ¿Me alcanza?',
+    title: 'Política de privacidad | Me Alcanza',
     description:
-      'Cómo tratamos la información en ¿Me alcanza?: sin registro obligatorio, cálculos locales y sin indexar simulaciones personales.',
+      'Cómo tratamos la información en Me Alcanza: sin registro obligatorio, cálculos en tu dispositivo y sin indexar simulaciones personales.',
     path: routes.privacy,
     type: 'website',
   },
   terms: {
-    title: 'Términos de uso | ¿Me alcanza?',
+    title: 'Términos de uso | Me Alcanza',
     description:
-      'Condiciones de uso de las calculadoras referenciales de ¿Me alcanza? para decisiones financieras en Chile.',
+      'Condiciones de uso de las calculadoras referenciales de Me Alcanza para estimar créditos y decisiones financieras en Chile.',
     path: routes.terms,
     type: 'website',
   },
   contact: {
-    title: 'Contacto | ¿Me alcanza?',
+    title: 'Contacto | Me Alcanza',
     description:
-      'Cómo contactar al equipo de ¿Me alcanza? para consultas sobre la aplicación y las calculadoras.',
+      'Cómo contactar al equipo de Me Alcanza para consultas sobre la aplicación y las calculadoras financieras.',
     path: routes.contact,
     type: 'website',
   },
   notFound: {
-    title: 'Página no encontrada | ¿Me alcanza?',
+    title: 'Página no encontrada | Me Alcanza',
     description: 'La página que buscas no existe. Vuelve al inicio o abre una calculadora.',
     path: '/404',
     type: 'website',
     noIndex: true,
   },
   lead: {
-    title: 'Solicitar orientación | ¿Me alcanza?',
+    title: 'Solicitar orientación | Me Alcanza',
     description: 'Formulario de orientación local. No se indexa como contenido público.',
     path: routes.lead,
     type: 'website',
