@@ -224,8 +224,8 @@ export function MortgageSimulatorScreen() {
               Simulador de crédito hipotecario en Chile
             </Heading>
             <Text style={styles.subtitle}>
-              Esta herramienta permite estimar un dividendo mensual usando el valor de la
-              propiedad, el pie, la tasa anual y el plazo.
+              Estima el dividendo mensual de un crédito hipotecario en Chile con la UF del día. Es
+              un cálculo referencial, no una cotización bancaria.
             </Text>
           </>
         ) : null}

@@ -64,6 +64,7 @@ export function SiteHeader({ withSafeArea = true }: Props) {
               style={[styles.brandLogo, isMobile && styles.brandLogoMobile]}
               resizeMode="contain"
               accessibilityIgnoresInvertColors
+              accessibilityLabel="Me Alcanza"
             />
           </AppLink>
 

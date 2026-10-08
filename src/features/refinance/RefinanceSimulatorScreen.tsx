@@ -122,7 +122,7 @@ export function RefinanceSimulatorScreen() {
         {phase === 'form' ? (
           <>
             <Heading level={1} style={styles.title}>
-              Simulador de refinanciamiento hipotecario
+              Refinanciar un crédito hipotecario
             </Heading>
             <Text style={styles.subtitle}>
               Compara tu dividendo actual con una nueva tasa estimada, calcula el ahorro mensual

@@ -96,7 +96,7 @@ export const footerCopy = {
   contact: 'Contacto',
   learnUf: 'Qué es la UF',
   learnLoad: 'Carga financiera',
-  learnRefinance: 'Refinanciamiento',
+  learnRefinance: 'Cuándo refinanciar',
 } as const;
 
 /** @deprecated Usar housingTools desde config/modules.ts */

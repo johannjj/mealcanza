@@ -25,6 +25,7 @@ export function HeroIllustration() {
           style={styles.logo}
           resizeMode="cover"
           accessibilityIgnoresInvertColors
+          accessibilityLabel="Logo de Me Alcanza"
         />
       </View>
 
