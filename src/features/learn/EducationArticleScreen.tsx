@@ -32,7 +32,11 @@ export function EducationArticleScreen({ content, seo }: Props) {
 
   return (
     <>
-      <PageSeo page={seo} breadcrumbs={breadcrumbsToSeo(breadcrumbs, seo.path)} />
+      <PageSeo
+        page={seo}
+        breadcrumbs={breadcrumbsToSeo(breadcrumbs, seo.path)}
+        faqs={content.faqs ? [...content.faqs] : undefined}
+      />
       <PageContainer
         header={<SiteHeader />}
         footer={<SiteFooter />}
@@ -47,10 +51,19 @@ export function EducationArticleScreen({ content, seo }: Props) {
 
         <Card style={styles.block}>
           <Heading level={2} style={styles.heading}>
-            Explicación simple
+            {content.explanationHeading ?? 'Explicación simple'}
           </Heading>
           <Text style={styles.body}>{content.explanation}</Text>
         </Card>
+
+        {content.sections?.map((section) => (
+          <Card key={section.heading} style={styles.block}>
+            <Heading level={2} style={styles.heading}>
+              {section.heading}
+            </Heading>
+            <Text style={styles.body}>{section.body}</Text>
+          </Card>
+        ))}
 
         <Card style={styles.block}>
           <Heading level={2} style={styles.heading}>
@@ -61,7 +74,7 @@ export function EducationArticleScreen({ content, seo }: Props) {
 
         <Card style={styles.block}>
           <Heading level={2} style={styles.heading}>
-            Contexto en Chile
+            {content.chileHeading ?? 'Contexto en Chile'}
           </Heading>
           <Text style={styles.body}>{content.chileContext}</Text>
         </Card>
@@ -72,6 +85,22 @@ export function EducationArticleScreen({ content, seo }: Props) {
           </Heading>
           <Text style={styles.body}>{content.sources}</Text>
         </Card>
+
+        {content.faqs && content.faqs.length > 0 ? (
+          <Card style={styles.block}>
+            <Heading level={2} style={styles.heading}>
+              Preguntas frecuentes
+            </Heading>
+            {content.faqs.map((faq) => (
+              <View key={faq.question} style={styles.faq}>
+                <Heading level={3} style={styles.faqQuestion}>
+                  {faq.question}
+                </Heading>
+                <Text style={styles.body}>{faq.answer}</Text>
+              </View>
+            ))}
+          </Card>
+        ) : null}
 
         {content.relatedLinks && content.relatedLinks.length > 0 ? (
           <View style={styles.related}>
@@ -132,6 +161,15 @@ const styles = StyleSheet.create({
     fontSize: 15,
     lineHeight: 23,
     color: colors.mutedText,
+  },
+  faq: {
+    gap: 4,
+    marginTop: spacing.sm,
+  },
+  faqQuestion: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: colors.text,
   },
   related: {
     gap: spacing.sm,

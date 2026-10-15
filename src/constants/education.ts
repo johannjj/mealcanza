@@ -6,17 +6,34 @@ export type RelatedLink = {
   href: AppRoute;
 };
 
+export type EducationSection = {
+  heading: string;
+  body: string;
+};
+
+export type EducationFaq = {
+  question: string;
+  answer: string;
+};
+
 export type EducationPageContent = {
   slug: string;
   title: string;
   introduction: string;
+  /** H2 de la explicación. Por defecto: «Explicación simple». */
+  explanationHeading?: string;
   explanation: string;
+  /** Bloques extra con H2 propio, entre la explicación y el ejemplo. */
+  sections?: EducationSection[];
   exampleTitle: string;
   exampleBody: string;
+  /** H2 del contexto. Por defecto: «Contexto en Chile». */
+  chileHeading?: string;
   chileContext: string;
   sources: string;
   updatedAt: string;
   relatedLinks?: RelatedLink[];
+  faqs?: EducationFaq[];
   disclaimer: string;
   ctaLabel: string;
   ctaRoute: AppRoute;
@@ -27,19 +44,31 @@ export const educationPages = {
     slug: 'que-es-la-uf',
     title: '¿Qué es la UF en Chile?',
     introduction:
-      'La Unidad de Fomento (UF) es una unidad de cuenta usada en Chile para expresar valores que se ajustan con la inflación. Muchos créditos hipotecarios y precios de vivienda se cotizan en UF.',
+      'UF significa Unidad de Fomento. Es una unidad de cuenta chilena que se reajusta con la inflación: no es una moneda ni un saldo que puedas transferir.',
+    explanationHeading: 'Qué significa la UF',
     explanation:
-      'Cuando la inflación sube, el valor en pesos de una UF también sube. Eso significa que un dividendo fijado en UF puede costar más pesos mes a mes, aunque el monto en UF se mantenga. Por eso conviene mirar tanto el valor en UF como su equivalente en CLP al simular un crédito.\n\n' +
-      'La UF no es una moneda que guardes en el banco: es un índice diario publicado por el Banco Central. Los bancos y notarías la usan para fijar montos de créditos, seguros y escrituras de forma estable en el tiempo. Si compras una propiedad de 3.000 UF, ese número no cambia; lo que cambia es cuántos pesos representa cada UF.\n\n' +
-      'Al simular un dividendo, la tasa de interés y el plazo definen cuántas UF pagarás al mes. Pero tu bolsillo siente el impacto en pesos: una subida de la UF encarece el mismo dividendo sin que hayas pedido un crédito mayor. Por eso las calculadoras muestran equivalencias en CLP usando el valor del día.',
-    exampleTitle: 'Ejemplo numérico',
+      'La UF expresa precios y deudas en una unidad estable, y el peso chileno es lo que se paga. El Banco Central publica el valor de la UF todos los días. Si una vivienda cuesta 3.000 UF, ese número no cambia; lo que cambia es cuántos pesos vale cada UF ese día.',
+    sections: [
+      {
+        heading: 'UF y pesos chilenos',
+        body:
+          'El peso (CLP) es la moneda. La UF es la unidad en la que se escriben muchos precios de vivienda, pies y dividendos. Para convertir, se multiplica la cantidad de UF por el valor publicado de esa fecha. Si la UF sube, el mismo monto en UF cuesta más pesos. Si baja, cuesta menos. Dos avisos en UF solo son comparables si usas el mismo valor de UF en ambos.',
+      },
+      {
+        heading: 'La UF en un crédito hipotecario',
+        body:
+          'En Chile el precio, el pie y el saldo del crédito suelen pactarse en UF. La tasa anual y el plazo definen el dividendo en UF, con el sistema francés de cuotas. El banco cobra ese dividendo en pesos, según la UF del periodo de pago. El monto en pesos puede subir aunque no hayas pedido más crédito ni cambiado la tasa. Los seguros de desgravamen e incendio a menudo también van en UF y no van incluidos en el dividendo de esta explicación.',
+      },
+    ],
+    exampleTitle: 'Ejemplo de conversión con una UF hipotética',
     exampleBody:
-      'Si tu dividendo es 12 UF y la UF vale $40.000, pagas cerca de $480.000. Si la UF sube a $41.000, el mismo dividendo pasa a unos $492.000. La obligación en UF no cambió; cambió su valor en pesos.\n\n' +
-      'Imagina una propiedad de 2.800 UF con pie del 20%: financiarías 2.240 UF. Con tasa anual 4,5% y 25 años, el dividendo podría rondar 12 UF. Hoy eso son unos $480.000; si en un año la UF sube 3%, el mismo dividendo sería ~$494.000 sin que hayas refinanciado ni aumentado el crédito.\n\n' +
-      'Por eso conviene simular con la UF actual y revisar qué porcentaje de tu renta líquida representa el dividendo en pesos, no solo en UF.',
+      'La UF de este ejemplo es $40.000. No es el valor del día: sirve para ver la conversión sin que el número caduque.\n\n' +
+      'Una propiedad de 2.800 UF con pie del 20% deja 2.240 UF por financiar. Con tasa anual de 4,5% y 25 años, el dividendo de sistema francés queda cerca de 12,45 UF. Con la UF hipotética de $40.000, eso son unos $498.000. Si esa misma UF fuera de $41.000, los mismos 12,45 UF pasarían a unos $510.000.\n\n' +
+      'El crédito en UF no cambió. Cambió el equivalente en pesos. Para ver el dividendo con la UF publicada hoy, usa el simulador: toma el valor del día al calcular.',
+    chileHeading: 'Cómo se usa la UF en Chile',
     chileContext:
-      'En Chile, la UF se creó en 1967 y hoy es el estándar para hipotecas, seguros de desgravamen, cotizaciones de departamentos nuevos y muchos contratos de arriendo de largo plazo. El valor se actualiza cada día hábil según la inflación del mes anterior.\n\n' +
-      'Si ves un aviso inmobiliario en UF, no es solo una convención: el precio en pesos variará con el índice. Al comparar ofertas, traduce ambas a CLP con la misma fecha de UF para decidir con números comparables.',
+      'La UF se creó en 1967. Hoy es el estándar de hipotecas, seguros de desgravamen, departamentos nuevos y muchos arriendos de largo plazo. Su valor se actualiza cada día según la inflación del mes anterior.\n\n' +
+      'Un aviso inmobiliario en UF no es solo una forma de escribir el precio: en pesos va a moverse con el índice. Para comparar ofertas, pásalas a pesos con la misma fecha de UF.',
     sources:
       'Referencia general: Banco Central de Chile (serie UF diaria) y mindicador.cl para el valor publicado. Esta guía resume conceptos habituales en el mercado hipotecario chileno; no sustituye la letra de tu contrato.',
     updatedAt: 'Actualizado: octubre 2026',
@@ -47,8 +76,35 @@ export const educationPages = {
       { label: 'Simular crédito hipotecario', href: routes.mortgage },
       { label: '¿Cuánto debería ganar?', href: routes.incomeRequired },
     ],
+    faqs: [
+      {
+        question: '¿Qué significa UF?',
+        answer:
+          'UF significa Unidad de Fomento. Es una unidad de cuenta de Chile que se reajusta con la inflación. No es un billete ni una moneda que se transfiera.',
+      },
+      {
+        question: '¿La UF es lo mismo que el peso?',
+        answer:
+          'No. El peso es la moneda con la que pagas. La UF es la unidad en la que se pactan muchos precios y dividendos. El pago en pesos sale de multiplicar las UF por el valor publicado de esa fecha.',
+      },
+      {
+        question: '¿Por qué sube el dividendo en pesos si el crédito en UF no cambia?',
+        answer:
+          'Porque el dividendo pactado en UF se cobra en pesos según la UF de ese pago. Si la UF sube, pagas más pesos por las mismas UF, aunque la tasa y el saldo en UF sigan iguales.',
+      },
+      {
+        question: '¿Cada cuánto cambia la UF?',
+        answer:
+          'Todos los días. El Banco Central publica la serie diaria y el ajuste sigue la inflación del mes anterior. Esta guía no muestra el valor de hoy.',
+      },
+      {
+        question: '¿Dónde veo el dividendo con la UF de hoy?',
+        answer:
+          'En el simulador de crédito hipotecario. Al calcular, usa el valor de UF publicado en ese momento. El ejemplo de esta página usa $40.000 solo para ilustrar la conversión.',
+      },
+    ],
     disclaimer:
-      'Esta explicación es educativa y referencial. No constituye asesoría financiera ni una proyección de inflación.',
+      'Esta explicación es educativa y referencial. No constituye asesoría financiera ni una proyección de inflación. El ejemplo usa una UF hipotética, no el valor del día.',
     ctaLabel: 'Simular crédito con UF actual',
     ctaRoute: routes.mortgage,
   },

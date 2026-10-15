@@ -84,12 +84,12 @@ export const affordabilityFaqs: Faq[] = [
   {
     question: '¿Qué es el margen mensual?',
     answer:
-      'Es una estimación de lo que quedaría tras restar créditos, gastos fijos y otras cargas a tu renta líquida.',
+      'Es una estimación de lo que quedaría tras restar créditos, gastos fijos, vivienda actual y $150.000 por cada carga o hijo a tu renta líquida.',
   },
   {
     question: '¿El dividendo sugerido es lo máximo que me prestarían?',
     answer:
-      'No. Es una guía prudente sobre tu presupuesto. El banco puede aprobar más o menos según sus políticas.',
+      'No. Es el 25% del margen que queda después de tus cargas, no el máximo que un banco aprobaría.',
   },
   {
     question: '¿Debo incluir el arriendo actual?',
@@ -107,6 +107,7 @@ export const mortgageRelatedLinks = [
 
 export const incomeRelatedLinks = [
   { label: 'Simular crédito hipotecario', href: routes.mortgage },
+  { label: '¿Qué es la UF en Chile?', href: routes.learnUf },
   { label: 'Capacidad de pago', href: routes.affordability },
   { label: 'Carga financiera', href: routes.learnLoad },
 ];
@@ -190,11 +191,11 @@ export const affordabilityExplainer = {
   sections: [
     {
       heading: 'Cómo se calcula el margen mensual',
-      body: 'Se restan créditos, gastos fijos, costo de vivienda actual y cargas por dependientes de tu sueldo líquido. Lo que queda es una referencia de margen mensual.',
+      body: 'Se restan créditos, gastos fijos, costo de vivienda actual y $150.000 por cada carga o hijo que indiques. Ese monto por carga es una referencia fija de la herramienta, no un gasto que escribes tú. Lo que queda es un margen mensual estimado.',
     },
     {
       heading: 'Qué es el dividendo sugerido',
-      body: 'Es una guía prudente sobre cuánto podrías destinar a vivienda sin tensionar el resto de tu presupuesto. No es lo máximo que un banco podría aprobar.',
+      body: 'Es el 25% del margen que queda, no el 25% de tu sueldo. Sirve para no destinar todo el margen a la vivienda. No es lo máximo que un banco podría aprobar.',
     },
     {
       heading: 'Cómo usar el resultado',
@@ -204,11 +205,11 @@ export const affordabilityExplainer = {
   whatItCalculates:
     'Estima un margen mensual y un dividendo máximo sugerido a partir de tu renta y cargas.',
   dataUsed:
-    'Sueldo líquido, costo de vivienda actual, créditos, gastos fijos y cargas por dependientes.',
+    'Sueldo líquido, costo de vivienda actual, créditos, gastos fijos y $150.000 estimados por cada carga o hijo.',
   howToRead:
-    'El margen es lo que quedaría tras tus cargas. El dividendo sugerido usa una fracción prudente de ese margen.',
+    'El margen es lo que quedaría tras tus cargas. El dividendo sugerido es el 25% de ese margen, no de la renta completa.',
   limitations:
-    'No reemplaza evaluación crediticia. No incluye todos los gastos reales del hogar.',
+    'No reemplaza evaluación crediticia. No incluye todos los gastos reales del hogar. Los $150.000 por carga son una estimación interna, no un arancel oficial.',
 };
 
 export const incomeRequiredExplainer = {
