@@ -79,13 +79,13 @@ export const seoPages = {
     type: 'website',
   },
   learnUf: {
-    title: '¿Qué es la UF en Chile? Significado | Me Alcanza',
+    title: '¿Qué significa la UF en Chile? | Me Alcanza',
     description:
-      'Qué es la UF y qué significa en un crédito hipotecario. Por qué cambia el valor en pesos y cómo afecta el dividendo, con un ejemplo simple.',
+      'La UF es la Unidad de Fomento, una unidad de cuenta de Chile que se reajusta con la inflación. Qué significa, cómo pasa a pesos y cómo afecta el dividendo.',
     path: routes.learnUf,
     type: 'article',
     datePublished: '2025-06-01',
-    dateModified: '2026-10-07',
+    dateModified: '2026-10-15',
   },
   learnLoad: {
     title: 'Carga financiera del dividendo hipotecario | Me Alcanza',
